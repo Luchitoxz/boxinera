@@ -1,0 +1,18 @@
+# Archivos de materiales y mockups pesados (PDFs originales, borradores de diseno)
+materiales_y_mockups/
+*.pdf
+
+# Archivos de sistema y logs
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+*.log
+*.tmp
+*.temp
+
+# Python / Entorno
+__pycache__/
+*.pyc
+.venv/
+venv/

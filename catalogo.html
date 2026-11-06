@@ -1,0 +1,2971 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catálogo de Productos | BOXINERA Importadora</title>
+  <meta name="description" content="Explorá el catálogo oficial de perfumes importados y productos originales. Precios mayoristas y minoristas con envíos a toda Argentina.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#ecfdf3',
+              100: '#d1fae1',
+              400: '#34d385',
+              500: '#10b969',
+              600: '#059654',
+              700: '#047844',
+              800: '#065f37',
+              900: '#064e2e',
+              neon: '#00e676',
+              dark: '#03150b',
+              card: '#0a140d'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts & Lucide Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    
+    /* Dual Range Slider Styling */
+    input[type=range]::-webkit-slider-thumb {
+      pointer-events: all;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: #0d823e;
+      border: 2px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+    input[type=range]::-moz-range-thumb {
+      pointer-events: all;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background-color: #0d823e;
+      border: 2px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+      cursor: pointer;
+    }
+
+    /* Product card elevation */
+    .product-card-elevate {
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.25s ease;
+      will-change: transform;
+    }
+    .product-card-elevate:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 32px -8px rgba(5, 150, 84, 0.14), 0 4px 12px -2px rgba(0, 0, 0, 0.05);
+      border-color: rgba(16, 185, 105, 0.4);
+    }
+
+    /* Custom Slim Scrollbar for Brands & Filters */
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 5px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f3;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #a7d9b9;
+      border-radius: 9999px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #0d823e;
+    }
+
+    /* Cart Badge Pop Animation */
+    @keyframes badgePop {
+      0% { transform: scale(1); }
+      40% { transform: scale(1.35); }
+      75% { transform: scale(0.92); }
+      100% { transform: scale(1); }
+    }
+    .badge-pop {
+      animation: badgePop 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    /* Floating WhatsApp Radar Pulse */
+    @keyframes radarPulse {
+      0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.65); }
+      70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+    }
+    .whatsapp-radar {
+      animation: radarPulse 3s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    }
+
+    /* Line Clamp fallback */
+    .line-clamp-2 {
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+  </style>
+
+  <!-- External Full Catalog Database (1,400+ Products) -->
+  <script src="assets/perfumes_data.js?v=perfumes_only_1402"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="bg-[#f8faf9] text-gray-900 antialiased selection:bg-brand-500 selection:text-white">
+
+    <!-- MAIN HEADER / NAVBAR -->
+  <header id="main-navbar" class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 h-20 flex items-center justify-between gap-4">
+      
+      <!-- LOGO -->
+      <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 shrink-0 group select-none" aria-label="BOXINERA Importadora">
+        <img src="assets/logo_icon.png" alt="BOXINERA" class="h-10 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105">
+        <div class="flex flex-col justify-center">
+          <span class="block text-lg sm:text-xl font-black text-gray-900 tracking-tight leading-none uppercase font-sans">BOXINERA</span>
+          <span class="block text-[11px] sm:text-xs font-bold text-gray-800 tracking-normal leading-tight lowercase font-sans -mt-0.5">importadora</span>
+        </div>
+      </a>
+
+      <!-- SEARCH BAR (OVAL MATCHING INDEX.HTML) -->
+      <div class="hidden md:flex flex-1 max-w-xl mx-6">
+        <div class="relative w-full">
+          <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+          <input 
+            type="text" 
+            id="search-input" 
+            oninput="handleSearchSync(this.value)"
+            placeholder="Buscar por perfume, gorra, body splash..." 
+            class="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm focus:outline-none focus:border-brand-500 focus:bg-white focus:ring-2 focus:ring-brand-500/20 transition-all"
+          >
+          <span id="search-clear" onclick="clearSearchInput()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer text-xs">✕</span>
+        </div>
+      </div>
+
+      <!-- DESKTOP NAV LINKS -->
+      <nav class="hidden lg:flex items-center gap-6 text-sm font-medium text-gray-600">
+        <a href="index.html" class="hover:text-brand-600 transition-colors">Inicio</a>
+        <a href="catalogo.html" class="text-brand-600 font-bold border-b-2 border-brand-600 pb-0.5">Catálogo</a>
+                <!-- CATEGORÍAS DROPDOWN (CON PUENTE INVISIBLE & TOLERANCIA DE CIERRE) -->
+        <div class="relative py-2 group cursor-pointer" id="nav-cat-container">
+          <button 
+            type="button" 
+            id="nav-cat-btn"
+            onclick="toggleNavCategoryMenu(event)" 
+            class="flex items-center gap-1.5 text-gray-600 hover:text-brand-600 font-medium transition-colors focus:outline-none select-none py-1"
+            aria-expanded="false"
+          >
+            <span>Categorías</span>
+            <i data-lucide="chevron-down" id="nav-cat-chevron" class="w-4 h-4 transition-transform duration-200"></i>
+          </button>
+
+          <!-- Dropdown Menu con Hitbox Bridge para que nunca se cierre al mover el mouse -->
+          <div 
+            id="nav-cat-menu" 
+            class="absolute top-full left-0 pt-2 w-56 opacity-0 pointer-events-none group-hover:opacity-100 group-hover:pointer-events-auto transition-all duration-200 z-50 transform -translate-y-1 group-hover:translate-y-0"
+          >
+            <!-- Puente invisible que conecta el botón con el menú sin zonas muertas -->
+            <div class="absolute -top-3 left-0 right-0 h-4 bg-transparent pointer-events-auto"></div>
+
+            <div class="bg-white border border-gray-100 rounded-2xl shadow-2xl py-2 overflow-hidden ring-1 ring-black/5">
+              <button 
+                type="button"
+                onclick="selectNavCategory('Perfumería', event)" 
+                class="w-full text-left px-4 py-2.5 text-xs font-bold text-gray-700 hover:bg-brand-50 hover:text-brand-600 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-sm">🧴</span>
+                  <span>Perfumería de Lujo</span>
+                </span>
+                <span class="text-[10px] bg-brand-50 text-brand-700 px-2 py-0.5 rounded-full font-bold">1.402</span>
+              </button>
+
+              <button 
+                type="button"
+                onclick="selectNavCategory('Body Splash', event)" 
+                class="w-full text-left px-4 py-2.5 text-xs font-bold text-gray-700 hover:bg-pink-50 hover:text-pink-600 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-sm">🌸</span>
+                  <span>Body Splash</span>
+                </span>
+                <span class="text-[10px] bg-pink-100 text-pink-700 px-2 py-0.5 rounded-full font-bold">99</span>
+              </button>
+
+              <button 
+                type="button"
+                onclick="selectNavCategory('Gorras', event)" 
+                class="w-full text-left px-4 py-2.5 text-xs font-bold text-gray-700 hover:bg-amber-50 hover:text-amber-700 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span class="flex items-center gap-2">
+                  <span class="text-sm">🧢</span>
+                  <span>Gorras Mayoristas</span>
+                </span>
+                <span class="text-[10px] bg-amber-100 text-amber-800 px-2 py-0.5 rounded-full font-bold">435</span>
+              </button>
+
+              <div class="my-1 border-t border-gray-100"></div>
+
+              <button 
+                type="button"
+                onclick="selectNavCategory('Todas', event)" 
+                class="w-full text-left px-4 py-2 text-xs font-bold text-[#0d823e] hover:bg-emerald-50 flex items-center justify-between transition-colors cursor-pointer"
+              >
+                <span>Ver Todo el Catálogo</span>
+                <span class="text-[10px] text-gray-400 font-bold">1.936</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <button type="button" onclick="openComoComprarModal()" class="hover:text-brand-600 transition-colors cursor-pointer text-sm font-medium text-gray-600">Cómo comprar</button>
+        <a href="index.html#contacto" class="hover:text-brand-600 transition-colors">Contacto</a>
+      </nav>
+
+      <!-- ACTION BUTTONS -->
+      <div class="flex items-center gap-3">
+        <!-- WHATSAPP FAST CONTACT -->
+        <a 
+          href="https://wa.me/5493816371332?text=Hola%20Boxinera!%20Tengo%20una%20consulta%20sobre%20los%20productos" 
+          target="_blank" rel="noopener noreferrer" 
+          class="hidden sm:inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-50 text-brand-700 hover:bg-brand-100 text-xs font-semibold border border-brand-200/80 transition-all"
+        >
+          <i data-lucide="message-circle" class="w-4 h-4 text-brand-600 fill-brand-600"></i>
+          <span>Consultar por WhatsApp</span>
+        </a>
+
+        <!-- CART DRAWER TRIGGER -->
+        <button 
+          onclick="toggleCart()" 
+          class="relative flex items-center gap-2 px-4 py-2 rounded-full bg-brand-600 hover:bg-brand-700 text-white font-semibold text-xs transition-all shadow-sm shadow-brand-500/30"
+          aria-label="Abrir pedido"
+        >
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <span class="hidden sm:inline">Ver Pedido</span>
+          <span id="cart-badge" class="bg-white text-brand-700 font-bold px-1.5 py-0.2 rounded-full text-[10px]">0</span>
+        </button>
+
+        <!-- HAMBURGER MENU BUTTON (MOBILE) -->
+        <button 
+          type="button" 
+          id="mobile-menu-btn" 
+          onclick="toggleMobileMenu()" 
+          class="lg:hidden p-2 rounded-xl text-gray-700 hover:text-[#0d823e] hover:bg-emerald-50/60 transition-colors border border-gray-200/80 cursor-pointer flex items-center justify-center shrink-0 active:scale-95" 
+          aria-label="Abrir menú de navegación"
+        >
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE SEARCH (Shown on small screens) -->
+    <div class="md:hidden px-4 pb-3">
+      <div class="relative w-full">
+        <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+        <input 
+          type="text" 
+          oninput="handleSearchSync(this.value)"
+          placeholder="Buscar por perfume, gorra, body splash..." 
+          class="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-full text-xs focus:outline-none focus:border-brand-500"
+        >
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================== -->
+  <!-- CATALOG HERO BANNER                        -->
+  <!-- ========================================== -->
+  <section class="bg-[#03150b] relative overflow-hidden border-b border-brand-900/60 py-10 lg:py-14">
+    <!-- Waves Background Image -->
+    <img src="assets/FOOTER BANNER.png" alt="Ondas" class="absolute inset-0 w-full h-full object-cover opacity-60 pointer-events-none object-right">
+    <div class="absolute inset-0 bg-gradient-to-r from-[#03150b] via-[#03150b]/90 to-transparent pointer-events-none"></div>
+
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+      
+      <!-- Left: Breadcrumb + Title + Dynamic Count -->
+      <div>
+        <nav class="flex items-center gap-2 text-xs text-gray-400 mb-2.5">
+          <a href="index.html" class="hover:text-white flex items-center gap-1 transition-colors">
+            <i data-lucide="home" class="w-3.5 h-3.5"></i>
+            <span>Inicio</span>
+          </a>
+          <span>&gt;</span>
+          <span class="text-white font-medium">Catálogo</span>
+        </nav>
+
+        <h1 class="text-2xl sm:text-4xl lg:text-5xl font-black text-white tracking-tight leading-tight">
+          Catálogo de Productos
+        </h1>
+
+        <div class="mt-3.5 flex items-center gap-3 flex-wrap">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/20 text-brand-neon border border-brand-500/40 text-xs font-bold">
+            <span class="w-2 h-2 rounded-full bg-brand-neon animate-pulse"></span>
+            <span>Catálogo Oficial</span>
+          </div>
+          <span class="text-xs text-gray-400 hidden sm:inline">• Perfumes Importados · Body Splash · Gorras Mayoristas • Envíos a todo el país</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================== -->
+  <!-- MAIN CATALOG CONTENT (SIDEBAR + GRID)      -->
+  <!-- ========================================== -->
+  <main id="catalog-main" class="py-8 sm:py-10 max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16">
+    <div class="flex flex-col lg:flex-row gap-8 items-start">
+      
+      <!-- ========================================== -->
+      <!-- LEFT SIDEBAR: FILTROS (OPCIONAL A DEMANDA) -->
+      <!-- ========================================== -->
+      <aside id="catalog-filters-sidebar" class="hidden w-full lg:w-72 xl:w-80 shrink-0 bg-white rounded-2xl p-5 border border-gray-100 shadow-sm lg:sticky lg:top-24 transition-all duration-300">
+        
+        <!-- Sidebar Header con botón de cerrar -->
+        <div class="flex items-center justify-between pb-4 border-b border-gray-100">
+          <div class="flex items-center gap-2.5 font-black text-gray-900 text-base">
+            <svg class="w-5 h-5 text-gray-900 stroke-current fill-none stroke-[2]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="4" y1="6" x2="20" y2="6"></line>
+              <line x1="7" y1="12" x2="17" y2="12"></line>
+              <line x1="10" y1="18" x2="14" y2="18"></line>
+            </svg>
+            <span>Filtros</span>
+            <span id="active-filter-badge" class="hidden text-[10px] bg-brand-50 text-[#0d823e] border border-brand-200 font-extrabold px-2 py-0.5 rounded-full">0</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="clearAllFilters()" class="text-xs text-[#0d823e] font-bold hover:underline">
+              Limpiar
+            </button>
+            <button type="button" onclick="toggleFiltersPanel(false)" class="p-1 rounded-lg text-gray-400 hover:text-gray-700 hover:bg-gray-100 transition-colors" title="Cerrar filtros">
+              <i data-lucide="x" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- 1. CATEGORÍAS -->
+        <div class="py-4 border-b border-gray-100">
+          <div class="flex items-center justify-between cursor-pointer select-none" onclick="toggleAccordion('cat-list', 'cat-icon')">
+            <span class="font-bold text-sm text-gray-900">Categorías</span>
+            <i id="cat-icon" data-lucide="chevron-up" class="w-4 h-4 text-gray-400 transition-transform"></i>
+          </div>
+          <div id="cat-list" class="mt-3.5 space-y-2 text-xs text-gray-700">
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" value="Perfumería" onchange="handleCategoryFilter(this)" class="cat-checkbox w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-brand-600 transition-colors font-medium">Perfumería</span>
+              </div>
+              <span id="count-cat-perfumeria" class="text-gray-400 font-semibold">(1.402)</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" value="Body Splash" onchange="handleCategoryFilter(this)" class="cat-checkbox w-4 h-4 rounded text-pink-600 focus:ring-pink-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-pink-600 transition-colors font-medium">Body Splash (Mayorista)</span>
+              </div>
+              <span id="count-cat-bodysplash" class="text-pink-600 font-extrabold">(99)</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" value="Gorras" onchange="handleCategoryFilter(this)" class="cat-checkbox w-4 h-4 rounded text-amber-600 focus:ring-amber-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-amber-600 transition-colors font-medium">Gorras Mayoristas</span>
+              </div>
+              <span id="count-cat-gorras" class="text-amber-700 font-extrabold bg-amber-50 px-1.5 py-0.5 rounded">(435)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 2. MARCAS (CON ACORDEÓN, BUSCADOR INTERNO Y SCROLLBAR) -->
+        <div class="py-4 border-b border-gray-100">
+          <div class="flex items-center justify-between cursor-pointer select-none" onclick="toggleAccordion('brand-box', 'brand-icon')">
+            <div class="flex items-center gap-1.5">
+              <span class="font-bold text-sm text-gray-900">Marcas</span>
+              <span id="brand-count-badge" class="text-[11px] font-bold text-gray-400">(109)</span>
+            </div>
+            <i id="brand-icon" data-lucide="chevron-up" class="w-4 h-4 text-gray-400 transition-transform"></i>
+          </div>
+          <div id="brand-box" class="mt-3.5 space-y-2">
+            <!-- Brand Search Input -->
+            <div class="relative mb-2">
+              <i data-lucide="search" class="absolute left-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400"></i>
+              <input 
+                type="text" 
+                id="brand-search" 
+                oninput="filterBrandList(this.value)"
+                placeholder="Buscar marca (ej. Afnan, Dior)..." 
+                class="w-full pl-8 pr-2 py-1.5 bg-gray-50 border border-gray-200 rounded-lg text-xs focus:outline-none focus:border-brand-500 transition-colors"
+              >
+            </div>
+
+            <!-- Scrollable Brands List -->
+            <div id="brand-list" class="max-h-56 overflow-y-auto pr-1 space-y-1.5 custom-scrollbar">
+              <!-- Injected dynamically by JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. GÉNERO (MASCULINO, FEMENINO, UNISEX) -->
+        <div class="py-4 border-b border-gray-100">
+          <div class="flex items-center justify-between cursor-pointer select-none" onclick="toggleAccordion('gender-box', 'gender-icon')">
+            <span class="font-bold text-sm text-gray-900">Género</span>
+            <i id="gender-icon" data-lucide="chevron-up" class="w-4 h-4 text-gray-400 transition-transform"></i>
+          </div>
+          <div id="gender-box" class="mt-3.5 space-y-2 text-xs text-gray-700">
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" value="Masculino" onchange="handleGenderFilter(this)" class="gender-checkbox w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-brand-600 transition-colors font-medium flex items-center gap-1.5">
+                  <i data-lucide="user" class="w-3.5 h-3.5 text-blue-500"></i> Masculino
+                </span>
+              </div>
+              <span id="count-gender-masculino" class="text-gray-400 font-semibold">(340)</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" value="Femenino" onchange="handleGenderFilter(this)" class="gender-checkbox w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-brand-600 transition-colors font-medium flex items-center gap-1.5">
+                  <i data-lucide="user" class="w-3.5 h-3.5 text-pink-500"></i> Femenino
+                </span>
+              </div>
+              <span id="count-gender-femenino" class="text-gray-400 font-semibold">(334)</span>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" value="Unisex" onchange="handleGenderFilter(this)" class="gender-checkbox w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-brand-600 transition-colors font-medium flex items-center gap-1.5">
+                  <i data-lucide="users" class="w-3.5 h-3.5 text-emerald-500"></i> Unisex
+                </span>
+              </div>
+              <span id="count-gender-unisex" class="text-gray-400 font-semibold">(733)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- 4. RANGO DE PRECIO ACTUALIZADO ($9.000 a $580.000+) -->
+        <div class="py-4 border-b border-gray-100">
+          <div class="flex items-center justify-between cursor-pointer select-none" onclick="toggleAccordion('price-box', 'price-icon')">
+            <span class="font-bold text-sm text-gray-900">Rango de precio</span>
+            <i id="price-icon" data-lucide="chevron-up" class="w-4 h-4 text-gray-400 transition-transform"></i>
+          </div>
+          <div id="price-box" class="mt-4 space-y-3">
+            <div class="relative w-full h-2 bg-gray-200 rounded-full mt-2">
+              <div id="slider-track-highlight" class="absolute h-2 bg-[#0d823e] rounded-full left-0 right-0"></div>
+              <input type="range" id="price-range-min" min="0" max="580000" step="1000" value="0" oninput="updatePriceSlider()" class="absolute w-full -top-1 h-2 opacity-0 cursor-pointer pointer-events-auto">
+              <input type="range" id="price-range-max" min="0" max="580000" step="1000" value="580000" oninput="updatePriceSlider()" class="absolute w-full -top-1 h-2 opacity-0 cursor-pointer pointer-events-auto">
+            </div>
+            
+            <div class="flex items-center gap-2 pt-1">
+              <div class="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1.5 text-xs text-gray-800 font-bold text-center" id="price-min-display">$ 0</div>
+              <span class="text-gray-400 text-xs font-bold">-</span>
+              <div class="flex-1 bg-gray-50 border border-gray-200 rounded-xl px-2 py-1.5 text-xs text-gray-800 font-bold text-center" id="price-max-display">$ 580.000</div>
+            </div>
+
+            <!-- Quick Budget Chips -->
+            <div class="pt-2 flex flex-wrap gap-1.5 text-[10px]">
+              <button onclick="setPriceTier(0, 50000)" class="px-2 py-1 bg-gray-100 hover:bg-brand-50 hover:text-brand-700 rounded-md font-semibold text-gray-600 transition-colors">Hasta $50k</button>
+              <button onclick="setPriceTier(50000, 150000)" class="px-2 py-1 bg-gray-100 hover:bg-brand-50 hover:text-brand-700 rounded-md font-semibold text-gray-600 transition-colors">$50k - $150k</button>
+              <button onclick="setPriceTier(150000, 300000)" class="px-2 py-1 bg-gray-100 hover:bg-brand-50 hover:text-brand-700 rounded-md font-semibold text-gray-600 transition-colors">$150k - $300k</button>
+              <button onclick="setPriceTier(300000, 580000)" class="px-2 py-1 bg-gray-100 hover:bg-brand-50 hover:text-brand-700 rounded-md font-semibold text-gray-600 transition-colors">Nicho / Lujo</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. DISPONIBILIDAD Y FOTO DISPONIBLE -->
+        <div class="py-4 border-b border-gray-100">
+          <div class="flex items-center justify-between cursor-pointer select-none" onclick="toggleAccordion('stock-box', 'stock-icon')">
+            <span class="font-bold text-sm text-gray-900">Disponibilidad y Fotos</span>
+            <i id="stock-icon" data-lucide="chevron-up" class="w-4 h-4 text-gray-400 transition-transform"></i>
+          </div>
+          <div id="stock-box" class="mt-3.5 space-y-2.5 text-xs text-gray-700">
+            
+            <!-- Foto disponible toggle -->
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" id="photo-only-checkbox" onchange="handlePhotoFilter(this)" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-brand-600 transition-colors font-medium flex items-center gap-1">
+                  <i data-lucide="camera" class="w-3.5 h-3.5 text-[#0d823e]"></i> Con foto real
+                </span>
+              </div>
+              <span id="count-photo-available" class="text-gray-400 font-semibold">(489)</span>
+            </label>
+
+            <!-- Stock toggle -->
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" id="stock-checkbox" checked onchange="handleStockFilter()" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-brand-600 transition-colors font-medium">En stock</span>
+              </div>
+              <span id="count-in-stock" class="text-gray-400 font-semibold">(1.407)</span>
+            </label>
+
+            <label class="flex items-center justify-between cursor-pointer group py-0.5">
+              <div class="flex items-center gap-2.5">
+                <input type="checkbox" id="out-of-stock-checkbox" onchange="handleStockFilter()" class="w-4 h-4 rounded text-brand-600 focus:ring-brand-500 border-gray-300 cursor-pointer">
+                <span class="group-hover:text-brand-600 transition-colors font-medium">Por encargo / Sin stock</span>
+              </div>
+              <span class="text-gray-400 font-semibold">(0)</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Bottom Action: Limpiar filtros -->
+        <div class="pt-5">
+          <button 
+            onclick="clearAllFilters()" 
+            class="w-full py-2.5 px-4 rounded-xl border border-gray-200 bg-white hover:bg-gray-50 text-gray-700 text-xs font-bold flex items-center justify-center gap-2 transition-all shadow-xs active:scale-95"
+          >
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5 text-[#0d823e]"></i>
+            <span>Limpiar todos los filtros</span>
+          </button>
+        </div>
+
+      </aside>
+
+      <!-- ========================================== -->
+      <!-- RIGHT MAIN: SEARCH, SORT, PILLS, GRID      -->
+      <!-- ========================================== -->
+      <section class="flex-1 w-full min-w-0">
+        
+        <!-- Search, Sort & Results Bar -->
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-3">
+          
+          <!-- Search box (Matching oval style from index.html) -->
+          <div class="relative flex-1 max-w-lg">
+            <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+            <input 
+              type="text" 
+              id="catalog-search" 
+              oninput="handleSearchSync(this.value)" 
+              placeholder="Buscar por perfume, gorra, body splash..." 
+              class="w-full pl-10 pr-8 py-2 bg-gray-50 border border-gray-200 rounded-full text-sm focus:outline-none focus:border-brand-500 focus:bg-white focus:ring-2 focus:ring-brand-500/20 shadow-xs transition-all"
+            >
+            <span id="catalog-search-clear" onclick="clearSearchInput()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer text-xs">×</span>
+          </div>
+
+          <!-- Controls: TOGGLE FILTROS BUTTON + ORDENAR -->
+          <div class="flex items-center justify-between sm:justify-end gap-2.5 text-xs flex-wrap">
+            
+            <!-- Botón Filtros (Aparece solo si el usuario desea) -->
+            <button 
+              type="button" 
+              id="btn-toggle-filters" 
+              onclick="toggleFiltersPanel()" 
+              class="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white hover:bg-emerald-50/50 hover:border-[#0d823e] text-gray-800 font-bold text-xs transition-all shadow-xs active:scale-95 cursor-pointer select-none"
+              title="Mostrar u ocultar panel de filtros"
+            >
+              <i data-lucide="sliders-horizontal" class="w-4 h-4 text-[#0d823e]"></i>
+              <span id="btn-toggle-filters-text">Filtros</span>
+              <span id="badge-active-filters-count" class="hidden text-[10px] bg-[#0d823e] text-white px-1.5 py-0.2 rounded-full font-black">0</span>
+            </button>
+
+            <!-- Sort dropdown -->
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="arrow-down-up" class="w-3.5 h-3.5 text-gray-500"></i>
+              <span class="text-gray-500 font-medium hidden sm:inline">Ordenar:</span>
+              <select id="catalog-sort" onchange="handleSort(this.value)" class="bg-white border border-gray-200 rounded-xl px-3 py-1.5 font-bold text-gray-800 text-xs focus:outline-none focus:border-brand-500 shadow-xs cursor-pointer">
+                <option value="novedades">Novedades y Destacados</option>
+                <option value="price-asc">Precio: Menor a Mayor</option>
+                <option value="price-desc">Precio: Mayor a Menor</option>
+                <option value="name">Alfabético (A-Z)</option>
+                <option value="brand">Por Marca (A-Z)</option>
+              </select>
+            </div>
+            <span id="results-count" class="text-gray-500 text-xs font-medium whitespace-nowrap hidden lg:inline">Mostrando 1 - 24 productos</span>
+          </div>
+
+        </div>
+
+        <!-- Quick Category Shortcuts Bar -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 mb-4 text-xs select-none">
+          <button 
+            type="button" 
+            onclick="quickFilterCategory('Todas')" 
+            id="quick-pill-Todas" 
+            class="px-3.5 py-1.5 rounded-full font-bold bg-[#0d823e] text-white shrink-0 shadow-xs transition-all"
+          >
+            Todas
+          </button>
+          <button 
+            type="button" 
+            onclick="quickFilterCategory('Perfumería')" 
+            id="quick-pill-Perfumería" 
+            class="px-3.5 py-1.5 rounded-full font-bold bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shrink-0 shadow-xs transition-all flex items-center gap-1.5"
+          >
+            <span>🧴 Perfumería de Lujo</span>
+          </button>
+          <button 
+            type="button" 
+            onclick="quickFilterCategory('Body Splash')" 
+            id="quick-pill-Body Splash" 
+            class="px-3.5 py-1.5 rounded-full font-bold bg-white hover:bg-pink-50 text-gray-700 hover:text-pink-700 border border-gray-200 shrink-0 shadow-xs transition-all flex items-center gap-1.5"
+          >
+            <span>🌸 Body Splash</span>
+          </button>
+          <button 
+            type="button" 
+            onclick="quickFilterCategory('Gorras')" 
+            id="quick-pill-Gorras" 
+            class="px-3.5 py-1.5 rounded-full font-bold bg-white hover:bg-amber-50 text-gray-700 hover:text-amber-800 border border-gray-200 shrink-0 shadow-xs transition-all flex items-center gap-1.5"
+          >
+            <span>🧢 Gorras Mayoristas</span>
+          </button>
+        </div>
+
+        <!-- Active Filters Bar -->
+        <div id="active-filters-bar" class="hidden bg-[#f0f7f3] border border-brand-200/60 rounded-xl px-4 py-2.5 mb-6 flex items-center gap-2 flex-wrap text-xs">
+          <span class="font-bold text-gray-700 shrink-0">Filtros activos:</span>
+          <div id="active-filters-pills" class="flex items-center gap-2 flex-wrap">
+            <!-- Injected by JS -->
+          </div>
+          <button onclick="clearAllFilters()" class="ml-auto text-[11px] text-[#0d823e] font-bold hover:underline shrink-0">
+            Limpiar todo
+          </button>
+        </div>
+
+        <!-- Products 4-Column Grid (Ultra-Fast 60 FPS, Exact Mockup Match) -->
+        <div id="catalog-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5 transition-all">
+          <!-- Injected dynamically by JS -->
+        </div>
+
+        <!-- Empty state block (when no products match) -->
+        <div id="empty-state" class="hidden text-center py-16 px-4 bg-white rounded-2xl border border-gray-100 shadow-sm mt-6">
+          <div class="w-16 h-16 rounded-2xl bg-brand-50 flex items-center justify-center mx-auto mb-3 text-brand-600 border border-brand-100">
+            <i data-lucide="search-x" class="w-8 h-8 stroke-[1.5]"></i>
+          </div>
+          <h4 class="text-base font-bold text-gray-900">No encontramos productos con esos filtros</h4>
+          <p class="text-xs text-gray-500 mt-1 max-w-sm mx-auto">
+            Probá buscando con otra palabra clave, ajustando el rango de precios o explorando todas las marcas.
+          </p>
+          <button onclick="clearAllFilters()" class="mt-5 px-5 py-2.5 bg-[#0d823e] text-white rounded-xl text-xs font-bold hover:bg-[#0ba04a] transition-all shadow-sm active:scale-95">
+            Ver catálogo completo
+          </button>
+        </div>
+
+        <!-- Pagination Controls -->
+        <div id="pagination-container" class="mt-10 pt-6 border-t border-gray-100 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
+          <div class="text-gray-500 font-medium" id="pagination-summary">
+            Página 1 de 59
+          </div>
+          <div id="pagination-bar" class="flex items-center gap-1.5 flex-wrap justify-center">
+            <!-- Injected dynamically by JS -->
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+
+    <!-- ========================================== -->
+    <!-- BOTTOM BENEFITS STRIP                      -->
+    <!-- ========================================== -->
+    <div class="mt-16 pt-8 border-t border-gray-200/80 grid grid-cols-2 lg:grid-cols-4 gap-6">
+      
+      <!-- Benefit 1 -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-50 text-[#0d823e] flex items-center justify-center shrink-0 border border-brand-100">
+          <i data-lucide="truck" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs text-gray-900">Envíos a toda Argentina</h4>
+          <p class="text-[11px] text-gray-500">Rápidos, asegurados y con seguimiento</p>
+        </div>
+      </div>
+
+      <!-- Benefit 2 -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-50 text-[#0d823e] flex items-center justify-center shrink-0 border border-brand-100">
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs text-gray-900">100% Originales</h4>
+          <p class="text-[11px] text-gray-500">Importación oficial garantizada</p>
+        </div>
+      </div>
+
+      <!-- Benefit 3 -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-50 text-[#0d823e] flex items-center justify-center shrink-0 border border-brand-100">
+          <i data-lucide="credit-card" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs text-gray-900">Múltiples medios de pago</h4>
+          <p class="text-[11px] text-gray-500">Transferencias, cuotas y convenios</p>
+        </div>
+      </div>
+
+      <!-- Benefit 4 -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-brand-50 text-[#0d823e] flex items-center justify-center shrink-0 border border-brand-100">
+          <i data-lucide="headphones" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h4 class="font-bold text-xs text-gray-900">Atención personalizada</h4>
+          <p class="text-[11px] text-gray-500">Asesoramiento directo por WhatsApp</p>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- ========================================== -->
+  <!-- FOOTER (EXACT MATCH TO MOCKUP - 5 COLS)     -->
+  <!-- ========================================== -->
+  <footer class="relative bg-[#06100a] text-gray-400 text-xs pt-14 pb-8 overflow-hidden border-t border-brand-900/30">
+    
+    <!-- Background Waves Texture inside Footer -->
+    <img src="assets/FOOTER BANNER.png" alt="Ondas Footer" class="absolute inset-0 w-full h-full object-cover opacity-30 pointer-events-none mix-blend-screen">
+    <div class="absolute inset-0 bg-gradient-to-t from-[#040b07] via-transparent to-[#06100a]/80 pointer-events-none"></div>
+
+    <div class="max-w-[1720px] mx-auto px-4 sm:px-8 lg:px-12 xl:px-16 relative z-10">
+      
+      <!-- Top 5 Columns Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10 mb-12">
+        
+        <!-- Col 1: Logo & Description -->
+        <div class="space-y-3.5 lg:pr-4">
+          <a href="index.html" class="flex items-center gap-2.5 sm:gap-3 inline-flex select-none group">
+            <img src="assets/logo_icon.png" alt="BOXINERA" class="h-9 sm:h-10 w-auto object-contain transition-transform group-hover:scale-105">
+            <div class="flex flex-col justify-center">
+              <span class="block text-base sm:text-lg font-black text-white tracking-wider leading-none uppercase font-sans">BOXINERA</span>
+              <span class="block text-[11px] sm:text-xs font-bold text-gray-300 leading-tight lowercase font-sans -mt-0.5">importadora</span>
+            </div>
+          </a>
+          <p class="text-gray-300 text-xs sm:text-[13px] leading-relaxed">
+            Perfumes de lujo, Body Splash y Gorras importadas.<br>
+            Venta minorista y mayorista.<br>
+            Envíos a todo el país.
+          </p>
+        </div>
+
+        <!-- Col 2: Navegación -->
+        <div>
+          <h4 class="text-white font-bold mb-3.5 text-sm sm:text-[15px] tracking-tight">Navegación</h4>
+          <ul class="space-y-2.5 text-xs sm:text-[13px] text-gray-300">
+            <li><a href="index.html" class="hover:text-brand-neon transition-colors">Inicio</a></li>
+            <li><a href="catalogo.html" class="hover:text-brand-neon transition-colors">Catálogo</a></li>
+            <li><a href="index.html#categorias" class="hover:text-brand-neon transition-colors">Categorías</a></li>
+            <li><button type="button" onclick="openComoComprarModal()" class="hover:text-brand-neon transition-colors cursor-pointer text-left">Cómo comprar</button></li>
+            <li><a href="https://wa.me/5493816371332" target="_blank" rel="noopener noreferrer" class="hover:text-brand-neon transition-colors">Contacto</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Categorías -->
+        <div>
+          <h4 class="text-white font-bold mb-3.5 text-sm sm:text-[15px] tracking-tight">Categorías</h4>
+          <ul class="space-y-2.5 text-xs sm:text-[13px] text-gray-300">
+            <li><a href="catalogo.html?categoria=Perfumería" class="hover:text-brand-neon transition-colors">Perfumería (1.402)</a></li>
+            <li><a href="catalogo.html?categoria=Body%20Splash" class="hover:text-brand-neon transition-colors">Body Splash (99)</a></li>
+            <li><a href="catalogo.html?categoria=Gorras" class="hover:text-brand-neon transition-colors">Gorras Mayoristas (435)</a></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Contacto -->
+        <div>
+          <h4 class="text-white font-bold mb-3.5 text-sm sm:text-[15px] tracking-tight">Contacto</h4>
+          <ul class="space-y-3 text-xs sm:text-[13px] text-gray-300">
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-emerald-400 stroke-current fill-none stroke-[1.8] shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+              </svg>
+              <a href="https://wa.me/5493816371332" target="_blank" rel="noopener noreferrer" class="hover:text-brand-neon transition-colors font-medium">WhatsApp: +54 9 3816 37-1332</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-pink-400 stroke-current fill-none stroke-[1.8] shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+              <a href="https://www.instagram.com/boxineraa/" target="_blank" rel="noopener noreferrer" class="hover:text-brand-neon transition-colors">Instagram: @boxineraa</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-cyan-400 fill-current shrink-0" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.46V10.8a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.23z"/>
+              </svg>
+              <a href="https://www.tiktok.com/@boxinera.importad" target="_blank" rel="noopener noreferrer" class="hover:text-brand-neon transition-colors">TikTok: @boxinera.importad</a>
+            </li>
+            <li class="flex items-center gap-2.5">
+              <svg class="w-4 h-4 text-gray-400 stroke-current fill-none stroke-[1.8] shrink-0" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Envíos a toda la Argentina</span>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Col 5: Seguinos -->
+        <div>
+          <h4 class="text-white font-bold mb-3.5 text-sm sm:text-[15px] tracking-tight">Seguinos</h4>
+          <p class="text-gray-400 text-xs mb-3">Encontranos en nuestras redes oficiales:</p>
+          <div class="flex items-center gap-3">
+            <!-- Instagram -->
+            <a href="https://www.instagram.com/boxineraa/" target="_blank" rel="noopener noreferrer" aria-label="Instagram @boxineraa" class="w-10 h-10 rounded-full bg-white/10 hover:bg-gradient-to-tr hover:from-amber-500 hover:via-rose-500 hover:to-purple-600 text-white flex items-center justify-center transition-all hover:scale-110 shadow-sm border border-white/10" title="Instagram @boxineraa">
+              <svg class="w-5 h-5 stroke-current fill-none stroke-[1.8]" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <!-- TikTok -->
+            <a href="https://www.tiktok.com/@boxinera.importad" target="_blank" rel="noopener noreferrer" aria-label="TikTok @boxinera.importad" class="w-10 h-10 rounded-full bg-white/10 hover:bg-black text-white hover:text-cyan-400 flex items-center justify-center transition-all hover:scale-110 shadow-sm border border-white/10 hover:border-cyan-400/40" title="TikTok @boxinera.importad">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.85.12V9.4a6.33 6.33 0 0 0-1-.08A6.34 6.34 0 0 0 3 15.66a6.34 6.34 0 0 0 10.82 4.46V10.8a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.23z"/>
+              </svg>
+            </a>
+            <!-- WhatsApp Direct Button -->
+            <a href="https://wa.me/5493816371332" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp +54 9 3816 37-1332" class="w-10 h-10 rounded-full bg-emerald-600/30 hover:bg-emerald-500 text-emerald-400 hover:text-white flex items-center justify-center transition-all hover:scale-110 shadow-sm border border-emerald-500/40" title="WhatsApp: +54 9 3816 37-1332">
+              <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+              </svg>
+            </a>
+          </div>
+          <div class="mt-3.5 space-y-1 text-xs">
+            <a href="https://www.instagram.com/boxineraa/" target="_blank" rel="noopener noreferrer" class="block text-gray-300 hover:text-pink-400 font-semibold transition-colors">@boxineraa</a>
+            <a href="https://www.tiktok.com/@boxinera.importad" target="_blank" rel="noopener noreferrer" class="block text-gray-400 hover:text-cyan-400 transition-colors">@boxinera.importad</a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar: Copyright & Terms -->
+      <div class="pt-6 border-t border-white/10 flex flex-col sm:flex-row justify-between items-center gap-3 text-xs text-gray-400">
+        <p>© 2026 Boxinera Importadora. Todos los derechos reservados.</p>
+        <div class="flex items-center gap-4">
+          <a href="terminos-y-condiciones.html" class="hover:text-brand-neon transition-colors">Términos y condiciones</a>
+          <span class="text-gray-500">|</span>
+          <a href="politica-de-privacidad.html" class="hover:text-brand-neon transition-colors">Política de privacidad</a>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+
+
+    <!-- ========================================== -->
+  <!-- MODAL: ¿CÓMO COMPRAR? (RECUADRO INFORMATIVO) -->
+  <!-- ========================================== -->
+  <div id="modal-como-comprar" class="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 hidden opacity-0 transition-opacity duration-300" onclick="handleComoComprarBackdropClick(event)">
+    <div class="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-gray-100 flex flex-col transform transition-all duration-300 scale-95" id="modal-como-comprar-card">
+      
+      <!-- Modal Header -->
+      <div class="relative bg-gradient-to-r from-[#03150b] via-[#062414] to-[#03150b] text-white p-6 sm:p-7 rounded-t-3xl border-b border-brand-900/60 overflow-hidden shrink-0">
+        <div class="absolute -right-10 -bottom-10 w-44 h-44 bg-brand-500/10 rounded-full blur-2xl pointer-events-none"></div>
+        
+        <div class="relative z-10 flex items-start justify-between gap-4">
+          <div class="flex items-center gap-3.5">
+            <div class="w-12 h-12 rounded-2xl bg-brand-500/20 border border-brand-500/40 text-brand-neon flex items-center justify-center shadow-inner shrink-0">
+              <i data-lucide="help-circle" class="w-6 h-6 stroke-[2]"></i>
+            </div>
+            <div>
+              <div class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-brand-500/20 text-brand-neon border border-brand-500/30 text-[10px] font-extrabold uppercase tracking-wider mb-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-brand-neon animate-pulse"></span>
+                Guía Paso a Paso
+              </div>
+              <h3 class="text-xl sm:text-2xl font-black tracking-tight text-white leading-tight">¿Cómo comprar en BOXINERA?</h3>
+            </div>
+          </div>
+
+          <button type="button" onclick="closeComoComprarModal()" class="w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors shrink-0 cursor-pointer" aria-label="Cerrar ventana">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+        <p class="text-xs sm:text-sm text-gray-300 mt-2.5 leading-relaxed relative z-10">
+          Comprar con nosotros es simple, transparente y con atención personalizada directa vía WhatsApp.
+        </p>
+      </div>
+
+      <!-- Modal Body: Steps -->
+      <div class="p-6 sm:p-7 space-y-4">
+        
+        <!-- Step 1 -->
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-[#f8faf9] border border-gray-100 hover:border-brand-200 transition-colors">
+          <div class="w-9 h-9 rounded-xl bg-[#0d823e] text-white flex items-center justify-center font-black text-sm shrink-0 shadow-sm">
+            1
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 class="text-sm font-bold text-gray-900">Elegí tus productos</h4>
+              <span class="text-[10px] font-extrabold text-[#0d823e] bg-brand-50 px-2 py-0.5 rounded-md border border-brand-200/50">Catálogo Online</span>
+            </div>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+              Explorá nuestra selección de perfumes importados de lujo, Body Splash o Gorras Mayoristas. Presioná el botón <strong>"Agregar al Pedido"</strong> en los artículos que desees cotizar.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-[#f8faf9] border border-gray-100 hover:border-brand-200 transition-colors">
+          <div class="w-9 h-9 rounded-xl bg-[#0d823e] text-white flex items-center justify-center font-black text-sm shrink-0 shadow-sm">
+            2
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 class="text-sm font-bold text-gray-900">Revisá tu carrito y completá tus datos</h4>
+              <span class="text-[10px] font-extrabold text-[#0d823e] bg-brand-50 px-2 py-0.5 rounded-md border border-brand-200/50">Bolsa de Pedido</span>
+            </div>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+              Abrí <strong>"Ver Pedido"</strong> desde el botón superior o flotante. Verificá cantidades y completá tu <strong>Nombre</strong> y <strong>Localidad de entrega</strong> para coordinar el despacho.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-[#f8faf9] border border-gray-100 hover:border-brand-200 transition-colors">
+          <div class="w-9 h-9 rounded-xl bg-[#0d823e] text-white flex items-center justify-center font-black text-sm shrink-0 shadow-sm">
+            3
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 class="text-sm font-bold text-gray-900">Enviá tu pedido a WhatsApp</h4>
+              <span class="text-[10px] font-extrabold text-[#0d823e] bg-brand-50 px-2 py-0.5 rounded-md border border-brand-200/50">Atención Directa</span>
+            </div>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+              Hacé clic en <strong>"Enviar Pedido a WhatsApp"</strong>. Se generará automáticamente un mensaje con la lista de tus productos a nuestro WhatsApp oficial (+54 9 3816 37-1332) para confirmarte stock al instante.
+            </p>
+          </div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="flex items-start gap-4 p-4 rounded-2xl bg-[#f8faf9] border border-gray-100 hover:border-brand-200 transition-colors">
+          <div class="w-9 h-9 rounded-xl bg-[#0d823e] text-white flex items-center justify-center font-black text-sm shrink-0 shadow-sm">
+            4
+          </div>
+          <div class="flex-1">
+            <div class="flex items-center gap-2 flex-wrap">
+              <h4 class="text-sm font-bold text-gray-900">Aboná y recibí en tu localidad</h4>
+              <span class="text-[10px] font-extrabold text-[#0d823e] bg-brand-50 px-2 py-0.5 rounded-md border border-brand-200/50">Envíos a todo el país</span>
+            </div>
+            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+              Abonás de forma segura (Transferencia CBU/CVU o Mercado Pago). Despachamos tu pedido con número de seguimiento por Andreani o Correo Argentino hasta tu puerta o sucursal.
+            </p>
+          </div>
+        </div>
+
+        <!-- Wholesale Tip Card -->
+        <div class="bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200/80 rounded-2xl p-4 text-xs text-amber-900 flex items-start gap-3">
+          <span class="text-xl shrink-0">🧢</span>
+          <div class="space-y-0.5">
+            <p class="font-extrabold text-amber-950">Información para Revendedores y Mayoristas:</p>
+            <p class="text-amber-800 leading-relaxed">
+              • <strong>Gorras Mayoristas:</strong> Pedido mínimo de <strong>25 unidades surtidas</strong> a elección con <strong>Envío 100% Gratis</strong>.<br>
+              • <strong>Perfumes y Body Splash:</strong> Precios especiales por cantidad y combos para locales y revendedores.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Modal Footer Actions -->
+      <div class="p-6 bg-gray-50 border-t border-gray-100 rounded-b-3xl flex flex-col sm:flex-row items-center justify-between gap-3">
+        <a 
+          href="https://wa.me/5493816371332?text=Hola%20Boxinera!%20Tengo%20una%20duda%20sobre%20c%C3%B3mo%20comprar" 
+          target="_blank" rel="noopener noreferrer" 
+          class="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-white border border-gray-200 text-gray-700 hover:text-emerald-700 hover:border-emerald-300 font-bold text-xs transition-colors shadow-xs"
+        >
+          <i data-lucide="message-circle" class="w-4 h-4 text-emerald-600 fill-emerald-600"></i>
+          <span>Consultar duda por WhatsApp</span>
+        </a>
+
+        <div class="flex items-center gap-2 w-full sm:w-auto">
+          <a 
+            href="catalogo.html" 
+            onclick="closeComoComprarModal()" 
+            class="flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#0d823e] hover:bg-[#0ba04a] text-white font-bold text-xs transition-all shadow-md shadow-brand-900/20 active:scale-95 text-center"
+          >
+            <span>Ir al Catálogo</span>
+            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          </a>
+          <button 
+            type="button" 
+            onclick="closeComoComprarModal()" 
+            class="px-4 py-2.5 rounded-xl text-gray-500 hover:text-gray-800 hover:bg-gray-200/60 font-semibold text-xs transition-colors cursor-pointer"
+          >
+            Cerrar
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ========================================== -->
+  <!-- CART DRAWER (SLIDING OFF-CANVAS)           -->
+  <!-- ========================================== -->
+  <div id="cart-drawer-overlay" onclick="toggleCart(false)" class="fixed inset-0 bg-black/60 z-50 opacity-0 pointer-events-none transition-opacity duration-300 backdrop-blur-xs"></div>
+  
+  <div id="cart-drawer" class="fixed top-0 right-0 w-full sm:w-[420px] h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col">
+    <!-- Drawer Header -->
+    <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc]">
+      <div class="flex items-center gap-2.5">
+        <div class="w-8 h-8 rounded-lg bg-brand-50 text-[#0d823e] flex items-center justify-center border border-brand-100">
+          <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+        </div>
+        <div>
+          <h3 class="text-sm font-bold text-gray-900">Tu Pedido</h3>
+          <p class="text-[11px] text-gray-500" id="cart-items-count">0 productos seleccionados</p>
+        </div>
+      </div>
+      <button onclick="toggleCart(false)" class="p-2 text-gray-400 hover:text-gray-600 rounded-lg hover:bg-gray-100 transition-colors" aria-label="Cerrar carrito">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Body (Items List) -->
+    <div id="cart-items-list" class="flex-1 overflow-y-auto p-4 sm:p-5 space-y-3 custom-scrollbar">
+      <!-- Injected by JS -->
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="p-5 border-t border-gray-100 bg-gray-50/80 space-y-3">
+      <div class="flex justify-between items-center text-sm font-bold text-gray-900">
+        <span>Total Estimado:</span>
+        <span id="cart-total-price" class="text-xl font-black text-[#0d823e]">$ 0</span>
+      </div>
+
+      <div class="space-y-2 pt-1">
+        <div>
+          <label class="block text-[11px] font-bold text-gray-700 mb-1">Nombre o Empresa:</label>
+          <input 
+            type="text" 
+            id="customer-name" 
+            placeholder="Tu Nombre (ej. Lucas Gomez)" 
+            oninput="localStorage.setItem('boxinera_customer_name', this.value)"
+            class="w-full px-3 py-2 text-[16px] sm:text-xs bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-brand-500 shadow-xs"
+          >
+        </div>
+        <div>
+          <label class="block text-[11px] font-bold text-gray-700 mb-1">Ciudad / Localidad de envío:</label>
+          <input 
+            type="text" 
+            id="customer-city" 
+            placeholder="Localidad / Provincia (ej. Córdoba Capital)" 
+            oninput="localStorage.setItem('boxinera_customer_city', this.value)"
+            class="w-full px-3 py-2 text-[16px] sm:text-xs bg-white border border-gray-200 rounded-lg focus:outline-none focus:border-brand-500 shadow-xs"
+          >
+        </div>
+      </div>
+
+      <button 
+        onclick="sendOrderWhatsApp()" 
+        class="w-full py-3.5 px-4 rounded-xl bg-[#0d823e] hover:bg-[#0ba04a] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg shadow-brand-500/20 transition-all active:scale-95 cursor-pointer"
+      >
+        <i data-lucide="message-circle" class="w-4 h-4 fill-white"></i>
+        <span>Enviar Pedido a WhatsApp</span>
+      </button>
+      <p class="text-[10px] text-gray-400 text-center leading-tight">
+        Te contactás directamente con el equipo de BOXINERA para coordinar método de pago, factura y logística.
+      </p>
+    </div>
+  </div>
+
+    <!-- FLOATING WHATSAPP BUTTON (BOTÓN OFICIAL CON PULSO RADAR) -->
+  <a 
+    href="https://wa.me/5493816371332?text=Hola%20Boxinera!%20Quiero%20hacer%20una%20consulta" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    class="whatsapp-radar fixed bottom-6 right-6 z-50 w-14 h-14 sm:w-16 sm:h-16 bg-[#25D366] hover:bg-[#20ba59] text-white rounded-full shadow-2xl flex items-center justify-center transition-transform hover:scale-110 active:scale-95 select-none"
+    title="Consultar por WhatsApp (+54 9 3816 37-1332)"
+    aria-label="Consultar por WhatsApp"
+  >
+    <svg class="w-8 h-8 sm:w-9 sm:h-9 fill-white pointer-events-none drop-shadow-sm" viewBox="0 0 24 24">
+      <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+    </svg>
+  </a>
+
+  <!-- ========================================== -->
+  <!-- JAVASCRIPT STATE & FILTERING ENGINE        -->
+  <!-- ========================================== -->
+  <script>
+    // 1. PRODUCTS DATA INITIALIZATION
+    // Loaded from assets/perfumes_data.js (window.BOXINERA_ALL_PRODUCTS)
+    const fallbackProducts = [
+      {
+        id: 1,
+        name: "Jean Paul Gaultier Le Male Elixir",
+        brand: "JEAN PAUL GAULTIER",
+        category: "Perfumería",
+        details: "125 ml · Masculino · Parfum",
+        ml: "125 ml",
+        gender: "Masculino",
+        price: 189990,
+        oldPrice: 219990,
+        badge: "Nuevo",
+        image: "assets/productos/JPG_PERFECT.png",
+        inStock: true
+      },
+      {
+        id: 2,
+        name: "Dior Sauvage EDP",
+        brand: "CHRISTIAN DIOR",
+        category: "Perfumería",
+        details: "100 ml · Masculino · EDP",
+        ml: "100 ml",
+        gender: "Masculino",
+        price: 229990,
+        oldPrice: 269990,
+        badge: "Oferta",
+        image: "assets/productos/DIOR_PERFECT.png",
+        inStock: true
+      },
+      {
+        id: 518,
+        name: "Carolina Herrera Good Girl EDP",
+        brand: "CAROLINA HERRERA",
+        category: "Perfumería",
+        details: "80 ml · Femenino · EDP",
+        ml: "80 ml",
+        gender: "Femenino",
+        price: 219990,
+        oldPrice: 259990,
+        badge: "Más vendido",
+        image: "assets/productos/good_girl_cutout.png",
+        inStock: true
+      },
+      {
+        id: 1320,
+        name: "Rabanne 1 Million EDT",
+        brand: "PACO RABANNE",
+        category: "Perfumería",
+        details: "100 ml · Masculino · EDT",
+        ml: "100 ml",
+        gender: "Masculino",
+        price: 179990,
+        oldPrice: 209990,
+        badge: "Oferta",
+        image: "assets/productos/one_million_cutout.png",
+        inStock: true
+      },
+      {
+        id: 111,
+        name: "Afnan 9PM Rebel EDP",
+        brand: "AFNAN",
+        category: "Perfumería",
+        details: "100 ml · Unisex · EDP",
+        ml: "100 ml",
+        gender: "Unisex",
+        price: 139990,
+        oldPrice: 159990,
+        badge: "Nuevo",
+        image: "assets/productos/afnan_9pm_rebel_cutout.png",
+        inStock: true
+      },
+      {
+        id: 7,
+        name: "Afnan 9PM Night Out",
+        brand: "AFNAN",
+        category: "Perfumería",
+        details: "100 ml · Masculino · Extrait",
+        ml: "100 ml",
+        gender: "Masculino",
+        price: 139990,
+        oldPrice: 159990,
+        badge: null,
+        image: "assets/productos/9pm.png",
+        inStock: true
+      }
+    ]
+
+    // STRICT BAN & PURGE: Eliminar cualquier producto tecnológico o electrónico residual y purgar maquetas viejas
+    try {
+      localStorage.removeItem('boxinera_products');
+      let custom = JSON.parse(localStorage.getItem('boxinera_custom_products')) || [];
+      if (custom.length > 0 && custom.length < 1000) {
+        // Maqueta antigua residual: borrar para cargar catálogo real de 1.936 ítems
+        localStorage.removeItem('boxinera_custom_products');
+        custom = [];
+      } else if (custom.length >= 1000) {
+        custom = custom.filter(p => {
+          const b = (p.brand || '').toUpperCase().trim();
+          const n = (p.name || '').toLowerCase();
+          if (b === 'APPLE' || b === 'SONY' || b === 'JBL') return false;
+          if (n.includes('airpod') || n.includes('wh-1000') || n.includes('apple watch') || n.includes('iphone') || n.includes('charge 5') || n.includes('auricular') || n.includes('parlante')) return false;
+          return true;
+        });
+        localStorage.setItem('boxinera_custom_products', JSON.stringify(custom));
+      }
+    } catch (e) {}
+
+    const BANNED_TECH_KEYWORDS = [
+      'airpod', 'wh-1000', 'apple watch', 'iphone', 'jbl', 'charge 5',
+      'auricular', 'parlante', 'headphone', 'smartwatch'
+    ];
+    const BANNED_BRANDS = ['APPLE', 'SONY', 'JBL'];
+
+    function isTechProduct(p) {
+      if (!p) return true;
+      const brand = (p.brand || '').trim().toUpperCase();
+      if (BANNED_BRANDS.includes(brand)) return true;
+      const cat = (p.category || '').toLowerCase();
+      if (cat.includes('electr') || cat.includes('audio') || cat.includes('tecnol') || cat.includes('accesorio') || cat.includes('hogar')) return true;
+      const name = (p.name || '').toLowerCase();
+      if (name.includes('apple musk')) return false; // Scents like Apple Musk are perfumes
+      return BANNED_TECH_KEYWORDS.some(kw => name.includes(kw));
+    }
+
+    if (typeof window.BOXINERA_ALL_PRODUCTS !== 'undefined' && Array.isArray(window.BOXINERA_ALL_PRODUCTS)) {
+      window.BOXINERA_ALL_PRODUCTS = window.BOXINERA_ALL_PRODUCTS.filter(p => !isTechProduct(p));
+    }
+
+    let allCatalog = (typeof window.BOXINERA_ALL_PRODUCTS !== 'undefined' && window.BOXINERA_ALL_PRODUCTS.length > 0)
+      ? window.BOXINERA_ALL_PRODUCTS.filter(p => !isTechProduct(p))
+      : fallbackProducts.filter(p => !isTechProduct(p));
+
+    const customAdmin = (JSON.parse(localStorage.getItem('boxinera_custom_products')) || []).filter(p => !isTechProduct(p));
+    let products = (customAdmin && customAdmin.length >= 1000) ? customAdmin : allCatalog;
+
+    // ==========================================
+    // SUPABASE REALTIME CLOUD SYNC
+    // ==========================================
+    (function initSupabaseLiveSync() {
+      const sbUrl = localStorage.getItem('boxinera_sb_url') || window.BOXINERA_SUPABASE_URL;
+      const sbKey = localStorage.getItem('boxinera_sb_key') || window.BOXINERA_SUPABASE_ANON_KEY;
+
+      if (!sbUrl || !sbKey || !window.supabase) return;
+
+      try {
+        const sb = window.supabase.createClient(sbUrl, sbKey);
+        
+        // Listen to live changes pushed from Owner's Cellphone
+        sb.channel('public:products')
+          .on('postgres_changes', { event: '*', schema: 'public', table: 'products' }, payload => {
+            if (payload.eventType === 'UPDATE' && payload.new) {
+              const item = products.find(p => p.id === payload.new.id);
+              if (item) {
+                item.price = Number(payload.new.price);
+                if (payload.new.old_price) item.oldPrice = Number(payload.new.old_price);
+                if (typeof payload.new.in_stock === 'boolean') item.inStock = payload.new.in_stock;
+                renderCatalogView();
+              }
+            } else if (payload.eventType === 'INSERT' && payload.new) {
+              const newProd = {
+                id: payload.new.id,
+                code: payload.new.code,
+                name: payload.new.name,
+                brand: payload.new.brand,
+                category: payload.new.category,
+                details: payload.new.details,
+                price: Number(payload.new.price),
+                oldPrice: payload.new.old_price ? Number(payload.new.old_price) : null,
+                badge: payload.new.badge || 'Nuevo',
+                image: payload.new.image,
+                inStock: payload.new.in_stock !== false
+              };
+              products.unshift(newProd);
+              renderCatalogView();
+            } else if (payload.eventType === 'DELETE' && payload.old) {
+              products = products.filter(p => p.id !== payload.old.id);
+              renderCatalogView();
+            }
+          })
+          .subscribe();
+
+        // Background fetch for fresh updates on initial page load
+        sb.from('products').select('*').limit(2000).then(({ data, error }) => {
+          if (!error && Array.isArray(data) && data.length > 0) {
+            data.forEach(dbProd => {
+              const localProd = products.find(p => p.id === dbProd.id);
+              if (localProd) {
+                localProd.price = Number(dbProd.price);
+                if (dbProd.old_price) localProd.oldPrice = Number(dbProd.old_price);
+                if (typeof dbProd.in_stock === 'boolean') localProd.inStock = dbProd.in_stock;
+              } else {
+                products.unshift({
+                  id: dbProd.id,
+                  code: dbProd.code,
+                  name: dbProd.name,
+                  brand: dbProd.brand,
+                  category: dbProd.category,
+                  details: dbProd.details,
+                  price: Number(dbProd.price),
+                  oldPrice: dbProd.old_price ? Number(dbProd.old_price) : null,
+                  badge: dbProd.badge,
+                  image: dbProd.image,
+                  inStock: dbProd.in_stock
+                });
+              }
+            });
+            renderCatalogView();
+          }
+        });
+      } catch (err) {
+        console.warn("Supabase live sync error:", err);
+      }
+    })();
+
+
+    // Shared Cart
+    let cart = JSON.parse(localStorage.getItem('boxinera_cart')) || [];
+
+    // Filter states
+    let selectedCategories = [];
+    let selectedBrands = new Set();
+    let selectedGenders = [];
+    let minPrice = 0;
+    let maxPrice = 580000;
+    let photoOnly = false;
+    let inStockOnly = true;
+    let outOfStockOnly = false;
+    let searchQuery = '';
+    let sortMode = 'novedades';
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 24;
+
+    function formatMoney(amount) {
+      if (!amount || isNaN(amount)) return '$ 0';
+      return '$ ' + Number(amount).toLocaleString('es-AR');
+    }
+
+    // Toggle Accordions in Sidebar
+    function toggleAccordion(listId, iconId) {
+      const list = document.getElementById(listId);
+      const icon = document.getElementById(iconId);
+      if (!list) return;
+      if (list.classList.contains('hidden')) {
+        list.classList.remove('hidden');
+        if (icon) icon.classList.remove('rotate-180');
+      } else {
+        list.classList.add('hidden');
+        if (icon) icon.classList.add('rotate-180');
+      }
+    }
+
+    // 2. LUXURY VECTOR BOTTLE GENERATOR FOR PRODUCTS WITHOUT PHOTO
+    function renderLuxuryVectorBottle(p) {
+      const brandName = (p.brand || 'FRAGANCIA DE LUJO').toUpperCase();
+      const mlText = p.ml || '100 ML';
+      const genderRaw = p.gender || 'Original';
+      const uid = p.id || Math.floor(Math.random() * 10000);
+      const isBodySplash = (p.category === 'Body Splash');
+      const isShimmer = (p.type === 'Shimmer' || (p.name || '').includes('SHIMMER'));
+
+      // Style dedicated gender badge (never overlaps heart)
+      let genderBadgeClass = 'text-emerald-800 bg-emerald-50 border-emerald-200';
+      if (genderRaw === 'Femenino') {
+        genderBadgeClass = 'text-pink-700 bg-pink-50 border-pink-200';
+      } else if (genderRaw === 'Masculino') {
+        genderBadgeClass = 'text-blue-700 bg-blue-50 border-blue-200';
+      } else if (genderRaw === 'Unisex') {
+        genderBadgeClass = 'text-emerald-800 bg-emerald-50 border-emerald-200';
+      }
+
+      if (isBodySplash) {
+        return `
+          <div class="relative w-full h-44 sm:h-48 rounded-xl bg-gradient-to-b from-[#fdf2f7] via-[#ffffff] to-[#f0fbf4] border border-pink-200/50 flex flex-col items-center justify-between p-3 select-none overflow-hidden group-hover:border-[#0d823e]/50 transition-colors shadow-inner">
+            <!-- Top Tag (pr-8 to prevent any heart overlap; hidden when badge is present) -->
+            <div class="w-full flex items-center justify-between z-10 pr-8">
+              ${p.badge ? '<div></div>' : `
+              <span class="text-[9px] font-black tracking-wider text-pink-700 bg-white/95 border border-pink-200 px-2 py-0.5 rounded-full uppercase shadow-xs truncate max-w-[120px]">
+                ${brandName}
+              </span>`}
+            </div>
+
+            <!-- Stylized Body Splash Spray Bottle SVG -->
+            <div class="my-auto relative flex items-center justify-center py-1">
+              <svg viewBox="0 0 100 135" class="w-16 h-26 drop-shadow-sm group-hover:scale-105 transition-transform duration-500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Spray Mist Particles -->
+                <circle cx="70" cy="18" r="1.5" fill="#f472b6" opacity="0.6"/>
+                <circle cx="78" cy="14" r="1.2" fill="#ec4899" opacity="0.7"/>
+                <circle cx="85" cy="19" r="1.8" fill="#10b981" opacity="0.5"/>
+                <!-- Spray Nozzle Actuator -->
+                <rect x="44" y="16" width="12" height="10" rx="1.5" fill="#e5e7eb" stroke="#9ca3af" stroke-width="0.8"/>
+                <circle cx="56" cy="21" r="1" fill="#4b5563"/>
+                <!-- Collar / Pump Neck -->
+                <rect x="42" y="26" width="16" height="5" fill="#fbbf24" stroke="#d97706" stroke-width="0.8"/>
+                <!-- Cylindrical Bottle Body -->
+                <rect x="28" y="31" width="44" height="92" rx="6" fill="url(#bs-glass-${uid})" stroke="#f472b6" stroke-width="1.2" stroke-opacity="0.6"/>
+                <!-- Shimmer Liquid Core -->
+                <rect x="31" y="44" width="38" height="76" rx="4" fill="url(#bs-liquid-${uid})" opacity="0.85"/>
+                <!-- Dip tube -->
+                <line x1="50" y1="31" x2="50" y2="120" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-dasharray="2 1"/>
+                ${isShimmer ? `
+                  <path d="M42 60 L44 64 L48 65 L44 66 L42 70 L40 66 L36 65 L40 64 Z" fill="#ffffff" opacity="0.9"/>
+                  <path d="M58 80 L59 83 L62 84 L59 85 L58 88 L57 85 L54 84 L57 83 Z" fill="#ffffff" opacity="0.9"/>
+                  <path d="M48 98 L49 100 L51 101 L49 102 L48 104 L47 102 L45 101 L47 100 Z" fill="#ffffff" opacity="0.9"/>
+                ` : ''}
+                <!-- Glass Highlight -->
+                <path d="M33 37 L33 118" stroke="rgba(255,255,255,0.8)" stroke-width="1.5" stroke-linecap="round"/>
+                <defs>
+                  <linearGradient id="bs-glass-${uid}" x1="28" y1="31" x2="72" y2="123" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                    <stop offset="100%" stop-color="#fdf2f8" stop-opacity="0.6"/>
+                  </linearGradient>
+                  <linearGradient id="bs-liquid-${uid}" x1="50" y1="44" x2="50" y2="120" gradientUnits="userSpaceOnUse">
+                    <stop offset="0%" stop-color="${isShimmer ? '#f472b6' : '#fbcfe8'}" stop-opacity="0.4"/>
+                    <stop offset="50%" stop-color="${isShimmer ? '#ec4899' : '#f472b6'}" stop-opacity="0.6"/>
+                    <stop offset="100%" stop-color="#db2777" stop-opacity="0.75"/>
+                  </linearGradient>
+                </defs>
+              </svg>
+            </div>
+
+            <!-- Bottom Presentation Tag -->
+            <div class="w-full flex items-center justify-between text-[10px] text-gray-500 font-semibold z-10 pt-1 border-t border-pink-200/40">
+              <span class="flex items-center gap-1 text-gray-600 font-bold">
+                <i data-lucide="droplet" class="w-3 h-3 text-pink-500"></i>
+                ${mlText}
+              </span>
+              <span class="text-[9px] font-extrabold ${isShimmer ? 'text-pink-700 bg-pink-100/90 border border-pink-300' : 'text-[#0d823e] bg-emerald-50 border border-emerald-200'} px-2 py-0.5 rounded-full uppercase tracking-wider shadow-2xs">
+                ${isShimmer ? '✨ Shimmer' : 'Body Mist'}
+              </span>
+            </div>
+          </div>
+        `;
+      }
+
+      // Default Perfume Flacon
+      return `
+        <div class="relative w-full h-44 sm:h-48 rounded-xl bg-gradient-to-b from-[#f4f8f5] via-[#ffffff] to-[#eaf4ee] border border-brand-500/15 flex flex-col items-center justify-between p-3 select-none overflow-hidden group-hover:border-brand-500/40 transition-colors shadow-inner">
+          <!-- Top Row (pr-8 ensures clear breathing room for heart icon; hidden when badge is present) -->
+          <div class="w-full flex items-center justify-between z-10 pr-8">
+            ${p.badge ? '<div></div>' : `
+            <span class="text-[9px] font-black tracking-widest text-[#0d823e] bg-white/95 border border-brand-200/80 px-2 py-0.5 rounded-full uppercase shadow-xs truncate max-w-[120px]">
+              ${brandName}
+            </span>`}
+          </div>
+
+          <div class="my-auto relative flex items-center justify-center py-1">
+            <svg viewBox="0 0 100 130" class="w-16 h-24 drop-shadow-sm text-emerald-600 group-hover:scale-105 transition-transform duration-500" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M40 8 H60 L64 22 H36 Z" fill="url(#cap-grad-${uid})" stroke="#047844" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M43 8 L41 22 M57 8 L59 22" stroke="rgba(255,255,255,0.7)" stroke-width="0.8"/>
+              <rect x="42" y="22" width="16" height="5" rx="1" fill="#c69214" stroke="#946d0a" stroke-width="0.8"/>
+              <rect x="44" y="27" width="12" height="6" fill="#e5e7eb" stroke="#9ca3af" stroke-width="0.8"/>
+              <path d="M30 33 C26 33 22 37 22 41 L22 108 C22 116 28 122 36 122 L64 122 C72 122 78 116 78 108 L78 41 C78 37 74 33 70 33 Z" fill="url(#bottle-glass-${uid})" stroke="#059654" stroke-width="1.5"/>
+              <path d="M26 60 C26 56 30 52 35 52 L65 52 C70 52 74 56 74 60 L74 106 C74 112 69 117 63 117 L37 117 C31 117 26 112 26 106 Z" fill="url(#liquid-grad-${uid})" opacity="0.85"/>
+              <path d="M26 62 Q50 67 74 62" stroke="#34d385" stroke-width="1.2" stroke-linecap="round" opacity="0.85"/>
+              <line x1="50" y1="33" x2="50" y2="114" stroke="rgba(255,255,255,0.7)" stroke-width="1.2" stroke-dasharray="2 1"/>
+              <path d="M28 42 L28 110" stroke="rgba(255,255,255,0.7)" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M72 42 L72 110" stroke="rgba(5,150,84,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+              <defs>
+                <linearGradient id="cap-grad-${uid}" x1="36" y1="8" x2="64" y2="22" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#064e2e"/>
+                  <stop offset="50%" stop-color="#10b969"/>
+                  <stop offset="100%" stop-color="#047844"/>
+                </linearGradient>
+                <linearGradient id="bottle-glass-${uid}" x1="22" y1="33" x2="78" y2="122" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+                  <stop offset="100%" stop-color="#e8f5ed" stop-opacity="0.55"/>
+                </linearGradient>
+                <linearGradient id="liquid-grad-${uid}" x1="50" y1="52" x2="50" y2="117" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#10b969" stop-opacity="0.3"/>
+                  <stop offset="40%" stop-color="#059654" stop-opacity="0.55"/>
+                  <stop offset="100%" stop-color="#065f37" stop-opacity="0.85"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+
+          <!-- Bottom Row: Volume on left, Gender Badge on right (Clean & 100% visible) -->
+          <div class="w-full flex items-center justify-between text-[10px] text-gray-500 font-semibold z-10 pt-1 border-t border-brand-500/10">
+            <span class="flex items-center gap-1 text-gray-600 font-bold">
+              <i data-lucide="droplet" class="w-3 h-3 text-[#0d823e]"></i>
+              ${mlText}
+            </span>
+            <span class="text-[9px] font-extrabold px-2 py-0.5 rounded-full uppercase tracking-wider border shadow-2xs ${genderBadgeClass}">
+              ${genderRaw}
+            </span>
+          </div>
+        </div>
+      `;
+    }
+
+    window.handleImageError = function(imgEl, productId) {
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+      imgEl.onerror = null;
+      imgEl.parentElement.innerHTML = renderLuxuryVectorBottle(prod);
+      if (window.lucide) lucide.createIcons();
+    };
+
+    // 3. BRANDS LIST GENERATION WITH SEARCH
+    function renderBrandList(search = '') {
+      const brandListContainer = document.getElementById('brand-list');
+      if (!brandListContainer) return;
+
+      const counts = {};
+      products.forEach(p => {
+        if (p.brand) {
+          counts[p.brand] = (counts[p.brand] || 0) + 1;
+        }
+      });
+
+      const sortedBrands = Object.keys(counts).sort((a, b) => a.localeCompare(b));
+      const s = search.toLowerCase().trim();
+      const filteredBrands = s 
+        ? sortedBrands.filter(b => b.toLowerCase().includes(s))
+        : sortedBrands;
+
+      const badge = document.getElementById('brand-count-badge');
+      if (badge) badge.innerText = `(${Object.keys(counts).length})`;
+
+      if (filteredBrands.length === 0) {
+        brandListContainer.innerHTML = '<p class="text-xs text-gray-400 py-3 text-center">No hay marcas que coincidan</p>';
+        return;
+      }
+
+      brandListContainer.innerHTML = filteredBrands.map(b => {
+        const isChecked = selectedBrands.has(b);
+        return `
+          <label class="flex items-center justify-between cursor-pointer group py-0.5">
+            <div class="flex items-center gap-2 min-w-0 pr-1">
+              <input 
+                type="checkbox" 
+                value="${b}" 
+                ${isChecked ? 'checked' : ''} 
+                onchange="handleBrandFilter('${b.replace(/'/g, "\\'")}', this.checked)" 
+                class="brand-checkbox w-3.5 h-3.5 rounded text-brand-600 focus:ring-brand-500 border-gray-300 cursor-pointer"
+              >
+              <span class="group-hover:text-brand-600 transition-colors truncate text-xs font-medium text-gray-700">${b}</span>
+            </div>
+            <span class="text-gray-400 text-[10px] font-semibold shrink-0">(${counts[b]})</span>
+          </label>
+        `;
+      }).join('');
+    }
+
+    function filterBrandList(val) {
+      renderBrandList(val);
+    }
+
+    function handleBrandFilter(brand, checked) {
+      if (checked) {
+        selectedBrands.add(brand);
+      } else {
+        selectedBrands.delete(brand);
+      }
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    // 4. CATEGORY, GENDER, PHOTO & STOCK FILTERS
+    function handleCategoryFilter(cb) {
+      if (cb.checked) {
+        selectedCategories.push(cb.value);
+      } else {
+        selectedCategories = selectedCategories.filter(c => c !== cb.value);
+      }
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    function quickFilterCategory(cat) {
+      if (cat === 'Todas') {
+        selectedCategories = [];
+        document.querySelectorAll('.cat-checkbox').forEach(cb => cb.checked = false);
+      } else {
+        selectedCategories = [cat];
+        document.querySelectorAll('.cat-checkbox').forEach(cb => {
+          cb.checked = (cb.value === cat);
+        });
+      }
+
+      // Update quick pills visual state
+      ['Todas', 'Perfumería', 'Body Splash', 'Gorras'].forEach(c => {
+        const pill = document.getElementById('quick-pill-' + c);
+        if (pill) {
+          if (c === cat || (cat === 'Todas' && c === 'Todas')) {
+            pill.className = "px-3.5 py-1.5 rounded-full font-bold bg-[#0d823e] text-white shrink-0 shadow-xs transition-all flex items-center gap-1.5";
+          } else {
+            pill.className = "px-3.5 py-1.5 rounded-full font-bold bg-white hover:bg-gray-50 text-gray-700 border border-gray-200 shrink-0 shadow-xs transition-all flex items-center gap-1.5";
+          }
+        }
+      });
+
+      currentPage = 1;
+      renderCatalogView();
+
+      const gridAnchor = document.getElementById('catalog-grid');
+      if (gridAnchor) {
+        const topOffset = gridAnchor.getBoundingClientRect().top + window.pageYOffset - 120;
+        window.scrollTo({ top: Math.max(0, topOffset), behavior: 'smooth' });
+      }
+    }
+
+    function handleGenderFilter(cb) {
+      if (cb.checked) {
+        selectedGenders.push(cb.value);
+      } else {
+        selectedGenders = selectedGenders.filter(g => g !== cb.value);
+      }
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    function handlePhotoFilter(cb) {
+      photoOnly = cb.checked;
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    function handleStockFilter() {
+      inStockOnly = document.getElementById('stock-checkbox').checked;
+      outOfStockOnly = document.getElementById('out-of-stock-checkbox').checked;
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    // 5. PRICE RANGE SLIDER
+    function updatePriceSlider() {
+      const minInput = document.getElementById('price-range-min');
+      const maxInput = document.getElementById('price-range-max');
+      let minVal = parseInt(minInput.value);
+      let maxVal = parseInt(maxInput.value);
+
+      if (minVal > maxVal) {
+        const tmp = minVal;
+        minVal = maxVal;
+        maxVal = tmp;
+      }
+
+      minPrice = minVal;
+      maxPrice = maxVal;
+
+      document.getElementById('price-min-display').innerText = formatMoney(minVal);
+      document.getElementById('price-max-display').innerText = formatMoney(maxVal);
+
+      // update highlight track
+      const sliderMin = parseInt(minInput.min);
+      const sliderMax = parseInt(minInput.max);
+      const range = sliderMax - sliderMin;
+      const pctMin = ((minVal - sliderMin) / range) * 100;
+      const pctMax = ((maxVal - sliderMin) / range) * 100;
+      
+      const bar = document.getElementById('slider-track-highlight');
+      if (bar) {
+        bar.style.left = pctMin + '%';
+        bar.style.right = (100 - pctMax) + '%';
+      }
+
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    function setPriceTier(minV, maxV) {
+      document.getElementById('price-range-min').value = minV;
+      document.getElementById('price-range-max').value = maxV;
+      updatePriceSlider();
+    }
+
+    // 6. SEARCH & SORT ENGINE
+    function handleSearch(val) {
+      searchQuery = (val || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('search-clear');
+      if (clearBtn) {
+        if (searchQuery) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
+      const catClear = document.getElementById('catalog-search-clear');
+      if (catClear) {
+        if (searchQuery) catClear.classList.remove('hidden');
+        else catClear.classList.add('hidden');
+      }
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    function handleSearchSync(val) {
+      const mainInput = document.getElementById('catalog-search');
+      if (mainInput && mainInput.value !== val) mainInput.value = val;
+      const topInput = document.getElementById('search-input');
+      if (topInput && topInput.value !== val) topInput.value = val;
+      handleSearch(val);
+    }
+
+    function clearSearchInput() {
+      const mainInput = document.getElementById('catalog-search');
+      if (mainInput) mainInput.value = '';
+      const topInput = document.getElementById('search-input');
+      if (topInput) topInput.value = '';
+      const clearBtn = document.getElementById('search-clear');
+      if (clearBtn) clearBtn.classList.add('hidden');
+      const catClear = document.getElementById('catalog-search-clear');
+      if (catClear) catClear.classList.add('hidden');
+      handleSearch('');
+    }
+
+    function clearSearch() {
+      clearSearchInput();
+    }
+
+    function handleSort(val) {
+      sortMode = val;
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    // 7. CLEAR ALL FILTERS
+    function clearAllFilters() {
+      selectedCategories = [];
+      selectedBrands.clear();
+      selectedGenders = [];
+      photoOnly = false;
+      inStockOnly = true;
+      outOfStockOnly = false;
+      minPrice = 0;
+      maxPrice = 580000;
+      searchQuery = '';
+      sortMode = 'novedades';
+      currentPage = 1;
+
+      document.querySelectorAll('.cat-checkbox').forEach(cb => cb.checked = false);
+      document.querySelectorAll('.brand-checkbox').forEach(cb => cb.checked = false);
+      document.querySelectorAll('.gender-checkbox').forEach(cb => cb.checked = false);
+      
+      const photoCb = document.getElementById('photo-only-checkbox');
+      if (photoCb) photoCb.checked = false;
+      const stockCb = document.getElementById('stock-checkbox');
+      if (stockCb) stockCb.checked = true;
+      const outStockCb = document.getElementById('out-of-stock-checkbox');
+      if (outStockCb) outStockCb.checked = false;
+
+      const pMin = document.getElementById('price-range-min');
+      const pMax = document.getElementById('price-range-max');
+      if (pMin) pMin.value = 0;
+      if (pMax) pMax.value = 580000;
+
+      const pMinDisp = document.getElementById('price-min-display');
+      const pMaxDisp = document.getElementById('price-max-display');
+      if (pMinDisp) pMinDisp.innerText = '$ 0';
+      if (pMaxDisp) pMaxDisp.innerText = '$ 580.000';
+
+      const bar = document.getElementById('slider-track-highlight');
+      if (bar) {
+        bar.style.left = '0%';
+        bar.style.right = '0%';
+      }
+
+      clearSearchInput();
+      renderBrandList();
+      renderCatalogView();
+    }
+
+    // Remove single filter pill
+    function removeFilter(type, val) {
+      if (type === 'category') {
+        selectedCategories = selectedCategories.filter(c => c !== val);
+        document.querySelectorAll(`.cat-checkbox[value="${val}"]`).forEach(cb => cb.checked = false);
+      } else if (type === 'brand') {
+        selectedBrands.delete(val);
+        document.querySelectorAll(`.brand-checkbox[value="${val}"]`).forEach(cb => cb.checked = false);
+      } else if (type === 'gender') {
+        selectedGenders = selectedGenders.filter(g => g !== val);
+        document.querySelectorAll(`.gender-checkbox[value="${val}"]`).forEach(cb => cb.checked = false);
+      } else if (type === 'photo') {
+        photoOnly = false;
+        const cb = document.getElementById('photo-only-checkbox');
+        if (cb) cb.checked = false;
+      } else if (type === 'price') {
+        minPrice = 0;
+        maxPrice = 580000;
+        document.getElementById('price-range-min').value = 0;
+        document.getElementById('price-range-max').value = 580000;
+        updatePriceSlider();
+        return;
+      } else if (type === 'search') {
+        clearSearchInput();
+        return;
+      }
+      currentPage = 1;
+      renderCatalogView();
+    }
+
+    // Render active filter pills
+        // Security: Escapes HTML to prevent reflected XSS
+    function escapeHTML(str) {
+      if (!str || typeof str !== 'string') return '';
+      return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+
+    function renderActivePills() {
+      const container = document.getElementById('active-filters-pills');
+      const bar = document.getElementById('active-filters-bar');
+      const badge = document.getElementById('active-filter-badge');
+      if (!container || !bar) return;
+
+      let pills = [];
+
+      if (searchQuery) {
+        const safeSearch = escapeHTML(searchQuery);
+        pills.push(`
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#dcf2e3] text-[#0d823e] font-bold text-xs shadow-xs">
+            Búsqueda: "${safeSearch}"
+            <button onclick="removeFilter('search')" class="hover:text-black font-extrabold ml-1">&times;</button>
+          </span>
+        `);
+      }
+
+      selectedCategories.forEach(cat => {
+        const safeCat = escapeHTML(cat);
+        const safeAttr = cat.replace(/'/g, "\\'");
+        pills.push(`
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#dcf2e3] text-[#0d823e] font-bold text-xs shadow-xs">
+            ${safeCat} <button onclick="removeFilter('category', '${safeAttr}')" class="hover:text-black font-extrabold ml-1">&times;</button>
+          </span>
+        `);
+      });
+
+      selectedBrands.forEach(b => {
+        const safeB = escapeHTML(b);
+        const safeAttr = b.replace(/'/g, "\\'");
+        pills.push(`
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#dcf2e3] text-[#0d823e] font-bold text-xs shadow-xs">
+            Marca: ${safeB} <button onclick="removeFilter('brand', '${safeAttr}')" class="hover:text-black font-extrabold ml-1">&times;</button>
+          </span>
+        `);
+      });
+
+      selectedGenders.forEach(g => {
+        const safeG = escapeHTML(g);
+        const safeAttr = g.replace(/'/g, "\\'");
+        pills.push(`
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#dcf2e3] text-[#0d823e] font-bold text-xs shadow-xs">
+            ${safeG} <button onclick="removeFilter('gender', '${safeAttr}')" class="hover:text-black font-extrabold ml-1">&times;</button>
+          </span>
+        `);
+      });
+
+      if (photoOnly) {
+        pills.push(`
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#dcf2e3] text-[#0d823e] font-bold text-xs shadow-xs">
+            Con foto real <button onclick="removeFilter('photo')" class="hover:text-black font-extrabold ml-1">&times;</button>
+          </span>
+        `);
+      }
+
+      if (minPrice > 0 || maxPrice < 580000) {
+        pills.push(`
+          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#dcf2e3] text-[#0d823e] font-bold text-xs shadow-xs">
+            ${formatMoney(minPrice)} - ${formatMoney(maxPrice)}
+            <button onclick="removeFilter('price')" class="hover:text-black font-extrabold ml-1">&times;</button>
+          </span>
+        `);
+      }
+
+      const totalActive = pills.length;
+      if (badge) {
+        if (totalActive > 0) {
+          badge.innerText = totalActive;
+          badge.classList.remove('hidden');
+        } else {
+          badge.classList.add('hidden');
+        }
+      }
+
+      if (totalActive === 0) {
+        bar.classList.add('hidden');
+      } else {
+        bar.classList.remove('hidden');
+        container.innerHTML = pills.join('');
+      }
+    }
+
+    // Accent Fold Normalizer for Fast Search
+    function normalizeStr(str) {
+      if (!str) return '';
+      return str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    }
+
+    // 8. MAIN CATALOG VIEW RENDERING (ULTRA-FAST 60 FPS WITH 24/PAGE PAGINATION)
+    function renderCatalogView() {
+      const grid = document.getElementById('catalog-grid');
+      const emptyState = document.getElementById('empty-state');
+      const countEl = document.getElementById('results-count');
+      const paginationContainer = document.getElementById('pagination-container');
+      const summaryEl = document.getElementById('pagination-summary');
+      const paginationBar = document.getElementById('pagination-bar');
+
+      renderActivePills();
+
+      const searchNorm = normalizeStr(searchQuery);
+
+      // Filtering in Memory (< 2ms for 1,400 products)
+      let filtered = products.filter(p => {
+        // Category
+        if (selectedCategories.length > 0 && !selectedCategories.includes(p.category)) {
+          return false;
+        }
+
+        // Brand
+        if (selectedBrands.size > 0 && !selectedBrands.has(p.brand)) {
+          return false;
+        }
+
+        // Gender
+        if (selectedGenders.length > 0) {
+          const g = p.gender || 'Unisex';
+          if (!selectedGenders.includes(g)) return false;
+        }
+
+        // Photo Available
+        if (photoOnly && (!p.image || p.image === '')) {
+          return false;
+        }
+
+        // Price
+        if (p.price < minPrice || p.price > maxPrice) {
+          return false;
+        }
+
+        // Stock
+        if (inStockOnly && !p.inStock) return false;
+        if (outOfStockOnly && p.inStock) return false;
+
+        // Search Query
+        if (searchNorm) {
+          const fullSearchable = normalizeStr((p.name || '') + ' ' + (p.brand || '') + ' ' + (p.details || '') + ' ' + (p.gender || '') + ' ' + (p.category || ''));
+          if (!fullSearchable.includes(searchNorm)) {
+            return false;
+          }
+        }
+
+        return true;
+      });
+
+      // Sorting
+      if (sortMode === 'price-asc') {
+        filtered.sort((a, b) => a.price - b.price);
+      } else if (sortMode === 'price-desc') {
+        filtered.sort((a, b) => b.price - a.price);
+      } else if (sortMode === 'name') {
+        filtered.sort((a, b) => (a.name || '').localeCompare(b.name || ''));
+      } else if (sortMode === 'brand') {
+        filtered.sort((a, b) => (a.brand || '').localeCompare(b.brand || ''));
+      }
+
+      const totalItems = filtered.length;
+      const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE) || 1;
+
+      if (currentPage > totalPages) currentPage = totalPages;
+      if (currentPage < 1) currentPage = 1;
+
+      const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+      const endIndex = Math.min(startIndex + ITEMS_PER_PAGE, totalItems);
+      const pageProducts = filtered.slice(startIndex, endIndex);
+
+      // Update Result Counter
+      if (totalItems === 0) {
+        countEl.innerText = '0 productos encontrados';
+        grid.innerHTML = '';
+        emptyState.classList.remove('hidden');
+        if (paginationContainer) paginationContainer.classList.add('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      if (paginationContainer) paginationContainer.classList.remove('hidden');
+
+      countEl.innerText = `Mostrando ${startIndex + 1} – ${endIndex} de ${totalItems.toLocaleString('es-AR')} productos`;
+      if (summaryEl) {
+        summaryEl.innerText = `Página ${currentPage} de ${totalPages} (${totalItems.toLocaleString('es-AR')} productos)`;
+      }
+
+      // Render 24 Cards
+      grid.innerHTML = pageProducts.map(p => {
+        const hasImage = p.image && p.image.trim() !== '';
+        const isFav = favorites.has(p.id);
+        const favSvgClass = isFav 
+          ? "w-4 h-4 stroke-current fill-red-500 text-red-500 stroke-[2]" 
+          : "w-4 h-4 stroke-current fill-none text-gray-400 stroke-[2]";
+        const badgeHtml = p.badge 
+          ? `<span class="absolute top-2 left-2 text-[10px] font-extrabold px-2.5 py-0.5 rounded-full ${p.badge.includes('Envío') ? 'bg-[#0d823e] text-white' : (p.badge === 'Nuevo' ? 'bg-[#0d823e] text-white' : 'bg-amber-500 text-white')} shadow-sm z-10 max-w-[calc(100%-42px)] truncate">${p.badge}</span>`
+          : '';
+
+        let imageAreaHtml = '';
+        if (hasImage) {
+          imageAreaHtml = `
+            <div class="relative w-full h-44 sm:h-48 rounded-xl bg-gradient-to-b from-gray-50/70 to-white flex items-center justify-center p-3 mb-3 border border-gray-100 overflow-hidden">
+              ${badgeHtml}
+              <button onclick="toggleFavorite(event, ${p.id})" class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors w-9 h-9 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-xs shadow-xs z-20 active:scale-90" aria-label="Favorito">
+                <svg class="${favSvgClass}" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+              <img 
+                src="${p.image}" 
+                alt="${p.name}" 
+                loading="lazy"
+                onerror="handleImageError(this, ${p.id})"
+                class="max-h-full max-w-full object-contain group-hover:scale-105 transition-transform duration-500 ease-out pointer-events-none drop-shadow-sm"
+              >
+            </div>
+          `;
+        } else {
+          imageAreaHtml = `
+            <div class="relative mb-3">
+              ${badgeHtml}
+              <button onclick="toggleFavorite(event, ${p.id})" class="absolute top-2 right-2 text-gray-400 hover:text-red-500 transition-colors w-9 h-9 flex items-center justify-center rounded-full bg-white/90 backdrop-blur-xs shadow-xs z-20 active:scale-90" aria-label="Favorito">
+                <svg class="${favSvgClass}" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                </svg>
+              </button>
+              ${renderLuxuryVectorBottle(p)}
+            </div>
+          `;
+        }
+
+        const brandTag = p.brand ? `<span class="text-[10px] font-extrabold text-[#0d823e] tracking-wider uppercase block truncate mb-0.5">${p.brand}</span>` : '';
+        const detailsTag = p.details || (p.ml ? `${p.ml} • ${p.gender || 'Original'}` : (p.category || ''));
+
+        // Wholesale Matrix for Body Splash & Gorras
+        let wholesaleBox = '';
+        if (p.category === 'Gorras' && p.wholesale) {
+          wholesaleBox = `
+            <div class="mt-2 p-2 bg-[#fffbeb] rounded-xl border border-amber-200/80 text-[10px]">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-amber-900 flex items-center gap-1">
+                  <i data-lucide="tag" class="w-3 h-3 text-amber-600"></i>
+                  Mayorista (Mín. 25u surtidas):
+                </span>
+                <span class="text-[8px] font-black uppercase text-amber-800 bg-amber-100 border border-amber-300 px-1 rounded">
+                  Envío Gratis
+                </span>
+              </div>
+              <div class="grid grid-cols-2 gap-1.5 text-center font-medium">
+                <div class="bg-white rounded py-1 px-1 border border-amber-100">
+                  <span class="block text-[8px] text-gray-400 font-bold">1 unidad</span>
+                  <span class="font-bold text-gray-800 text-[11px]">${formatMoney(p.wholesale.u1)}</span>
+                </div>
+                <div class="bg-[#fef3c7] rounded py-1 px-1 border border-amber-300 text-amber-900">
+                  <span class="block text-[8px] font-black">5+ del modelo</span>
+                  <span class="font-black text-[11px] text-amber-900">${formatMoney(p.wholesale.u5)}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (p.category === 'Body Splash' && p.wholesale) {
+          wholesaleBox = `
+            <div class="mt-2 p-2 bg-[#f4fbf6] rounded-xl border border-emerald-100/90 text-[10px]">
+              <div class="flex items-center justify-between mb-1">
+                <span class="font-bold text-gray-800 flex items-center gap-1">
+                  <i data-lucide="tag" class="w-3 h-3 text-[#0d823e]"></i>
+                  Precios por mayor:
+                </span>
+                <span class="text-[8px] font-black uppercase text-[#0d823e] bg-white border border-emerald-200 px-1 rounded">
+                  Envío Incluido
+                </span>
+              </div>
+              <div class="grid grid-cols-4 gap-1 text-center font-medium">
+                <div class="bg-white rounded py-0.5 px-0.5 border border-emerald-100">
+                  <span class="block text-[8px] text-gray-400 font-bold">5 u</span>
+                  <span class="font-bold text-gray-800 text-[10px]">${formatMoney(p.wholesale.u5)}</span>
+                </div>
+                <div class="bg-white rounded py-0.5 px-0.5 border border-emerald-100">
+                  <span class="block text-[8px] text-gray-400 font-bold">10 u</span>
+                  <span class="font-bold text-gray-800 text-[10px]">${formatMoney(p.wholesale.u10)}</span>
+                </div>
+                <div class="bg-white rounded py-0.5 px-0.5 border border-emerald-100">
+                  <span class="block text-[8px] text-gray-400 font-bold">25 u</span>
+                  <span class="font-bold text-gray-800 text-[10px]">${formatMoney(p.wholesale.u25)}</span>
+                </div>
+                <div class="bg-[#dcf3e4] rounded py-0.5 px-0.5 border border-[#a8e3bc] text-[#0a6631]">
+                  <span class="block text-[8px] font-black">Caja (18u)</span>
+                  <span class="font-black text-[10px]">${formatMoney(p.wholesale.caja)}</span>
+                </div>
+              </div>
+            </div>
+          `;
+        }
+
+        return `
+          <div class="group bg-white rounded-2xl p-4 sm:p-5 flex flex-col justify-between select-none product-card-elevate border border-gray-100/90 shadow-xs">
+            <div>
+              ${imageAreaHtml}
+
+              <!-- Brand & Details -->
+              ${brandTag}
+              <h3 class="text-xs sm:text-[13px] font-bold text-gray-900 leading-snug line-clamp-2 min-h-[34px] group-hover:text-[#0d823e] transition-colors">
+                ${p.name}
+              </h3>
+              <span class="block text-[11px] text-gray-400 font-medium mt-1 truncate">${detailsTag}</span>
+
+              ${wholesaleBox}
+            </div>
+
+            <!-- Price & Add Button -->
+            <div class="mt-3 pt-2 border-t border-gray-100/80">
+              <div class="flex items-baseline justify-between">
+                <div class="flex items-baseline gap-1.5">
+                  <span class="text-sm sm:text-base font-extrabold text-[#0d823e]">${formatMoney(p.price)}</span>
+                  ${p.wholesale ? `<span class="text-[10px] text-gray-400 font-medium">/ 1 u</span>` : ''}
+                </div>
+                ${p.oldPrice ? `<span class="text-[11px] sm:text-xs text-gray-400 line-through">${formatMoney(p.oldPrice)}</span>` : ''}
+              </div>
+
+              <button 
+                onclick="addToCart(${p.id})" 
+                class="w-full mt-2.5 py-2 px-3 rounded-xl bg-[#0d823e] hover:bg-[#0ba04a] text-white font-bold text-xs flex items-center justify-center gap-2 transition-all shadow-xs active:scale-95 cursor-pointer"
+              >
+                <i data-lucide="shopping-cart" class="w-3.5 h-3.5"></i>
+                <span>Agregar al pedido</span>
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Render Pagination Bar
+      renderPaginationBar(totalPages);
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // Smart Pagination Generator
+    function renderPaginationBar(totalPages) {
+      const container = document.getElementById('pagination-bar');
+      if (!container) return;
+
+      if (totalPages <= 1) {
+        container.innerHTML = '';
+        return;
+      }
+
+      let html = [];
+
+      // Prev Button
+      const prevDisabled = currentPage === 1;
+      html.push(`
+        <button 
+          onclick="prevPage()" 
+          ${prevDisabled ? 'disabled' : ''} 
+          class="px-3 py-1.5 rounded-xl border border-gray-200 bg-white text-gray-600 font-bold shadow-xs transition-all ${prevDisabled ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-50 cursor-pointer'}"
+        >
+          &lt; Anterior
+        </button>
+      `);
+
+      // Page Numbers (Smart Ellipsis)
+      const maxButtons = 7;
+      let pages = [];
+
+      if (totalPages <= maxButtons) {
+        for (let i = 1; i <= totalPages; i++) pages.push(i);
+      } else {
+        if (currentPage <= 4) {
+          pages = [1, 2, 3, 4, 5, '...', totalPages];
+        } else if (currentPage >= totalPages - 3) {
+          pages = [1, '...', totalPages - 4, totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
+        } else {
+          pages = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
+        }
+      }
+
+      pages.forEach(p => {
+        if (p === '...') {
+          html.push(`<span class="w-8 h-8 flex items-center justify-center text-gray-400 font-bold">&hellip;</span>`);
+        } else {
+          const isActive = p === currentPage;
+          html.push(`
+            <button 
+              onclick="setPage(${p})" 
+              class="w-8 h-8 sm:w-9 sm:h-9 rounded-xl font-bold flex items-center justify-center shadow-xs transition-all cursor-pointer ${isActive ? 'bg-[#0d823e] text-white shadow-brand-500/20' : 'border border-gray-200 bg-white text-gray-700 hover:bg-gray-50'}"
+            >
+              ${p}
+            </button>
+          `);
+        }
+      });
+
+      // Next Button
+      const nextDisabled = currentPage === totalPages;
+      html.push(`
+        <button 
+          onclick="nextPage(${totalPages})" 
+          ${nextDisabled ? 'disabled' : ''} 
+          class="px-3 py-1.5 rounded-xl border border-gray-200 bg-white text-gray-600 font-bold shadow-xs transition-all ${nextDisabled ? 'opacity-40 cursor-not-allowed' : 'hover:bg-gray-50 cursor-pointer'}"
+        >
+          Siguiente &gt;
+        </button>
+      `);
+
+      container.innerHTML = html.join('');
+    }
+
+    function setPage(n) {
+      currentPage = n;
+      renderCatalogView();
+      const mainEl = document.getElementById('catalog-main');
+      if (mainEl) {
+        window.scrollTo({ top: mainEl.offsetTop - 80, behavior: 'smooth' });
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 1) setPage(currentPage - 1);
+    }
+
+    function nextPage(totalPages) {
+      if (currentPage < totalPages) setPage(currentPage + 1);
+    }
+
+    // Persisted Wishlist / Favorites
+    let favorites = new Set(JSON.parse(localStorage.getItem('boxinera_favorites') || '[]'));
+
+    function saveFavorites() {
+      try {
+        localStorage.setItem('boxinera_favorites', JSON.stringify(Array.from(favorites)));
+      } catch (e) {}
+    }
+
+    // Toggle favorite state with localStorage persistence
+    function toggleFavorite(e, id) {
+      e.stopPropagation();
+      if (!id) return;
+      if (favorites.has(id)) {
+        favorites.delete(id);
+      } else {
+        favorites.add(id);
+      }
+      saveFavorites();
+
+      const btn = e.currentTarget;
+      const svg = btn.querySelector('svg');
+      if (svg) {
+        if (favorites.has(id)) {
+          svg.classList.remove('fill-none', 'text-gray-400');
+          svg.classList.add('fill-red-500', 'text-red-500');
+        } else {
+          svg.classList.remove('fill-red-500', 'text-red-500');
+          svg.classList.add('fill-none', 'text-gray-400');
+        }
+      }
+    }
+
+    // ==========================================
+    // 9. CART ENGINE & WHATSAPP QUOTATION
+    // ==========================================
+    // Cart Drawer Toggle
+    function toggleCart(open) {
+      const drawer = document.getElementById('cart-drawer');
+      const overlay = document.getElementById('cart-drawer-overlay');
+      if (!drawer || !overlay) return;
+      
+      const shouldOpen = (open !== undefined) ? open : drawer.classList.contains('translate-x-full');
+      if (shouldOpen) {
+        drawer.classList.remove('translate-x-full');
+        overlay.classList.remove('opacity-0', 'pointer-events-none');
+        overlay.classList.add('opacity-100');
+        document.body.style.overflow = 'hidden';
+      } else {
+        drawer.classList.add('translate-x-full');
+        overlay.classList.remove('opacity-100');
+        overlay.classList.add('opacity-0', 'pointer-events-none');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function saveCart() {
+      localStorage.setItem('boxinera_cart', JSON.stringify(cart));
+      updateCartBadge();
+      renderCartItems();
+    }
+
+    function addToCart(productId) {
+      const prod = products.find(p => p.id === productId);
+      if (!prod) return;
+
+      const existing = cart.find(item => item.id === productId);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...prod, qty: 1 });
+      }
+
+      saveCart();
+
+      const badge = document.getElementById('cart-badge');
+      if (badge) {
+        badge.classList.remove('badge-pop');
+        void badge.offsetWidth;
+        badge.classList.add('badge-pop');
+      }
+
+      toggleCart(true);
+    }
+
+    function changeQty(productId, delta) {
+      const item = cart.find(i => i.id === productId);
+      if (!item) return;
+
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== productId);
+      }
+      saveCart();
+    }
+
+    function removeFromCart(productId) {
+      cart = cart.filter(i => i.id !== productId);
+      saveCart();
+    }
+
+    function updateCartBadge() {
+      const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+      const badge = document.getElementById('cart-badge');
+      if (badge) badge.innerText = totalQty;
+
+      const countLabel = document.getElementById('cart-items-count');
+      if (countLabel) countLabel.innerText = `${totalQty} producto${totalQty === 1 ? '' : 's'} seleccionado${totalQty === 1 ? '' : 's'}`;
+    }
+
+    // Helper to calculate effective unit price based on wholesale volume
+    function getEffectivePrice(item) {
+      if (!item.wholesale) return item.price;
+      const w = item.wholesale;
+      const q = item.qty || 1;
+      
+      // For Gorras
+      if (item.category === 'Gorras') {
+        if (q >= 5 && w.u5) return w.u5;
+        return w.u1 || item.price;
+      }
+
+      // For Body Splash:
+      // Tiers: 5u, 10u, 18u (caja cerrada), 25u+
+      // Closed-box (18u) is $13.200. Orders >= 18u get at least the closed-box rate.
+      // Orders >= 25u must never be penalized with a higher per-unit rate.
+      if (q >= 18) {
+        const rates = [w.caja, (q >= 25 ? w.u25 : null)].filter(r => typeof r === 'number' && r > 0);
+        if (rates.length > 0) return Math.min(...rates);
+      }
+      if (q >= 10 && w.u10) return w.u10;
+      if (q >= 5 && w.u5) return w.u5;
+      return w.u1 || item.price;
+    }
+
+    function renderCartItems() {
+      const container = document.getElementById('cart-items-list');
+      const totalEl = document.getElementById('cart-total-price');
+      if (!container) return;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="text-center py-14 text-gray-400">
+            <div class="w-14 h-14 rounded-2xl bg-gray-50 flex items-center justify-center mx-auto mb-2 text-gray-300">
+              <i data-lucide="shopping-bag" class="w-7 h-7"></i>
+            </div>
+            <p class="text-xs font-bold text-gray-700">Tu pedido está vacío</p>
+            <p class="text-[11px] text-gray-400 mt-1">Elegí fragancias o body splash del catálogo para cotizar al instante.</p>
+          </div>
+        `;
+        if (totalEl) totalEl.innerText = '$ 0';
+        if (window.lucide) lucide.createIcons();
+        return;
+      }
+
+      let grandTotal = 0;
+      container.innerHTML = cart.map(item => {
+        const unitPrice = getEffectivePrice(item);
+        const itemTotal = unitPrice * item.qty;
+        grandTotal += itemTotal;
+        const hasDiscount = (unitPrice < item.price);
+
+        const thumbHtml = item.image 
+          ? `<img src="${item.image}" alt="${item.name}" class="w-12 h-12 object-contain bg-white rounded-lg p-1 border border-gray-100 shrink-0">`
+          : `
+            <div class="w-12 h-12 rounded-lg bg-brand-50 border border-brand-200/50 flex flex-col items-center justify-center text-[#0d823e] shrink-0 p-1">
+              <i data-lucide="sparkles" class="w-4 h-4"></i>
+              <span class="text-[8px] font-black uppercase truncate max-w-full">${item.brand || 'PRODUCTO'}</span>
+            </div>
+          `;
+
+        return `
+          <div class="flex items-center gap-3 p-3 bg-gray-50/70 hover:bg-gray-50 rounded-xl border border-gray-100 transition-colors">
+            ${thumbHtml}
+            <div class="flex-1 min-w-0">
+              ${item.brand ? `<span class="text-[9px] font-extrabold text-[#0d823e] uppercase tracking-wider block truncate">${item.brand}</span>` : ''}
+              <h4 class="text-xs font-bold text-gray-900 truncate">${item.name}</h4>
+              <div class="flex items-center gap-1.5 mt-0.5">
+                <p class="text-[11px] font-extrabold text-[#0d823e]">${formatMoney(unitPrice)}</p>
+                ${hasDiscount ? `
+                  <span class="text-[9px] bg-emerald-100 text-[#0d823e] font-extrabold px-1 rounded">Mayorista</span>
+                  <span class="text-[9px] text-gray-400 line-through">${formatMoney(item.price)}</span>
+                ` : ''}
+              </div>
+            </div>
+            
+            <div class="flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1 shadow-xs shrink-0">
+              <button onclick="changeQty(${item.id}, -1)" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-black hover:bg-gray-100 rounded-md text-sm font-black transition-colors" aria-label="Disminuir cantidad">&minus;</button>
+              <span class="w-7 text-center text-xs font-black text-gray-900">${item.qty}</span>
+              <button onclick="changeQty(${item.id}, 1)" class="w-8 h-8 flex items-center justify-center text-gray-700 hover:text-black hover:bg-gray-100 rounded-md text-sm font-black transition-colors" aria-label="Aumentar cantidad">&plus;</button>
+            </div>
+
+            <button onclick="removeFromCart(${item.id})" class="text-gray-400 hover:text-red-500 transition-colors p-1" title="Eliminar">
+              <i data-lucide="trash-2" class="w-4 h-4"></i>
+            </button>
+          </div>
+        `;
+      }).join('');
+
+      if (totalEl) totalEl.innerText = formatMoney(grandTotal);
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function sendOrderWhatsApp() {
+      if (cart.length === 0) {
+        alert("Por favor agregá al menos un producto al pedido para cotizar.");
+        return;
+      }
+
+      const name = (document.getElementById('customer-name')?.value || '').trim() || localStorage.getItem('boxinera_customer_name') || 'Cliente';
+      const city = (document.getElementById('customer-city')?.value || '').trim() || localStorage.getItem('boxinera_customer_city') || 'A coordinar';
+
+      let message = `¡Hola *BOXINERA Importadora*! 📦✨\n`;
+      message += `Quisiera consultar disponibilidad y cotizar el siguiente pedido desde el catálogo web:\n\n`;
+      message += `📋 *DETALLE DEL PEDIDO:*\n`;
+      
+      let grandTotal = 0;
+      let hasBodySplash = false;
+      let hasGorras = false;
+      let totalGorrasQty = 0;
+
+      cart.forEach((item, idx) => {
+        const unitPrice = getEffectivePrice(item);
+        const itemTotal = unitPrice * item.qty;
+        grandTotal += itemTotal;
+        const brandStr = item.brand ? `[${item.brand}] ` : '';
+        const detailStr = item.ml ? ` (${item.ml})` : '';
+        const tierNote = (unitPrice < item.price) ? ' *(Precio Mayorista aplicado)*' : '';
+        if (item.category === 'Body Splash') hasBodySplash = true;
+        if (item.category === 'Gorras') {
+          hasGorras = true;
+          totalGorrasQty += item.qty;
+        }
+
+        message += `${idx + 1}. ${item.qty}x ${brandStr}${item.name}${detailStr} — ${formatMoney(unitPrice)} c/u${tierNote} = ${formatMoney(itemTotal)}\n`;
+      });
+
+      message += `\n💰 *Total Estimado: ${formatMoney(grandTotal)}*\n`;
+      if (hasGorras) {
+        message += `🧢 *Gorras en pedido:* ${totalGorrasQty} u (Pedido mínimo mayorista: 25u surtidas) · Envío Gratis\n`;
+      }
+      if (hasBodySplash) {
+        message += `🚚 *Envío incluido en Body Splash*\n`;
+      }
+      message += `\n👤 *Nombre:* ${name}\n`;
+      message += `📍 *Localidad / Entrega:* ${city}\n\n`;
+      message += `¿Me confirman disponibilidad y cotización para coordinar el pago y despacho? ¡Muchas gracias!`;
+
+      const phone = '5493816371332';
+      const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+    }
+
+    // 10. INITIALIZATION
+    window.addEventListener('DOMContentLoaded', () => {
+      // Dynamic count in badges (limpio sin sobreescritura de conteo en banner)
+      const totalCountBadge = document.getElementById('total-count-badge');
+      if (totalCountBadge) {
+        // totalCountBadge.innerText = `${products.length.toLocaleString('es-AR')} productos disponibles`;
+      }
+
+// Compute dynamic category and photo counts
+      const perfCount = products.filter(p => p.category === 'Perfumería').length;
+      const bsCount = products.filter(p => p.category === 'Body Splash').length;
+      const gorrasCount = products.filter(p => p.category === 'Gorras').length;
+      const photoCount = products.filter(p => p.image && p.image.trim() !== '').length;
+
+      const pCountEl = document.getElementById('count-cat-perfumeria');
+      if (pCountEl) pCountEl.innerText = `(${perfCount.toLocaleString('es-AR')})`;
+      const bsCountEl = document.getElementById('count-cat-bodysplash');
+      if (bsCountEl) bsCountEl.innerText = `(${bsCount.toLocaleString('es-AR')})`;
+      const gCountEl = document.getElementById('count-cat-gorras');
+      if (gCountEl) gCountEl.innerText = `(${gorrasCount.toLocaleString('es-AR')})`;
+      const photoCountEl = document.getElementById('count-photo-available');
+      if (photoCountEl) photoCountEl.innerText = `(${photoCount.toLocaleString('es-AR')})`;
+      const stockCountEl = document.getElementById('count-in-stock');
+      if (stockCountEl) stockCountEl.innerText = `(${products.length.toLocaleString('es-AR')})`;
+
+      // Gender counts
+      const mascCount = products.filter(p => p.gender === 'Masculino').length;
+      const femCount = products.filter(p => p.gender === 'Femenino').length;
+      const uniCount = products.filter(p => p.gender === 'Unisex').length;
+      const gMascEl = document.getElementById('count-gender-masculino');
+      if (gMascEl) gMascEl.innerText = `(${mascCount.toLocaleString('es-AR')})`;
+      const gFemEl = document.getElementById('count-gender-femenino');
+      if (gFemEl) gFemEl.innerText = `(${femCount.toLocaleString('es-AR')})`;
+      const gUniEl = document.getElementById('count-gender-unisex');
+      if (gUniEl) gUniEl.innerText = `(${uniCount.toLocaleString('es-AR')})`;
+
+      // Render brands list
+      renderBrandList();
+
+      // Read URL query params
+      const urlParams = new URLSearchParams(window.location.search);
+      const catParam = urlParams.get('categoria');
+      const brandParam = urlParams.get('marca');
+      const searchParam = urlParams.get('search');
+
+      if (brandParam) {
+        selectedBrands.add(brandParam);
+      }
+      if (catParam) {
+        quickFilterCategory(catParam);
+      } else if (searchParam) {
+        handleSearchSync(searchParam);
+      } else {
+        renderCatalogView();
+      }
+
+      updateCartBadge();
+      if (window.lucide) lucide.createIcons();
+    });
+  </script>
+
+  <!-- Secret Owner Admin Shortcut: Ctrl+Shift+A or Triple-Click on Header Logo -->
+  <script>
+    (function() {
+      // 1. Keyboard Shortcut: Ctrl + Shift + A
+      window.addEventListener('keydown', function(e) {
+        if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+          e.preventDefault();
+          window.open('admin.html', '_blank');
+        }
+      });
+
+      // 2. Secret Triple Click on Logo (Prevents navigation on rapid clicks)
+      document.addEventListener('DOMContentLoaded', function() {
+        const logoAnchors = document.querySelectorAll('header a[aria-label="BOXINERA Importadora"], a:has(img[alt="BOXINERA"])');
+        logoAnchors.forEach(function(anchor) {
+          if (!anchor || anchor.__hasTripleClick) return;
+          anchor.__hasTripleClick = true;
+          let clicks = 0;
+          let timer = null;
+          anchor.addEventListener('click', function(e) {
+            clicks++;
+            if (clicks === 1) {
+              e.preventDefault();
+              timer = setTimeout(function() {
+                if (clicks === 1) {
+                  clicks = 0;
+                  window.location.href = anchor.getAttribute('href') || 'index.html';
+                }
+              }, 350);
+            } else if (clicks < 3) {
+              e.preventDefault();
+              clearTimeout(timer);
+              timer = setTimeout(function() { clicks = 0; }, 800);
+            } else if (clicks >= 3) {
+              e.preventDefault();
+              clearTimeout(timer);
+              clicks = 0;
+              window.open('admin.html', '_blank');
+            }
+          });
+        });
+      });
+    })();
+  
+    // ========================================================
+    // NAVBAR CATEGORY DROPDOWN (SMOOTH HOVER + CLICK TOGGLE)
+    // ========================================================
+    let navCatTimer = null;
+    let isNavCatOpen = false;
+
+    function toggleNavCategoryMenu(e) {
+      if (e) e.stopPropagation();
+      isNavCatOpen = !isNavCatOpen;
+      updateNavCatState(isNavCatOpen);
+    }
+
+    function updateNavCatState(open) {
+      const menu = document.getElementById('nav-cat-menu');
+      const chevron = document.getElementById('nav-cat-chevron');
+      if (!menu) return;
+      if (open) {
+        menu.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-1');
+        menu.classList.add('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        if (chevron) chevron.classList.add('rotate-180');
+      } else {
+        menu.classList.remove('opacity-100', 'pointer-events-auto', 'translate-y-0');
+        menu.classList.add('opacity-0', 'pointer-events-none', '-translate-y-1');
+        if (chevron) chevron.classList.remove('rotate-180');
+      }
+    }
+
+    function selectNavCategory(cat, e) {
+      if (e) e.stopPropagation();
+      isNavCatOpen = false;
+      updateNavCatState(false);
+
+      if (cat === 'Todas') {
+        clearAllFilters();
+      } else {
+        quickFilterCategory(cat);
+      }
+      
+      // Scroll smoothly to products grid
+      const gridAnchor = document.getElementById('catalogo-main-container') || document.getElementById('catalog-grid');
+      if (gridAnchor) {
+        const topOffset = gridAnchor.getBoundingClientRect().top + window.pageYOffset - 120;
+        window.scrollTo({ top: Math.max(0, topOffset), behavior: 'smooth' });
+      }
+    }
+
+    // Close when clicking outside
+    document.addEventListener('click', function(e) {
+      const container = document.getElementById('nav-cat-container');
+      if (container && !container.contains(e.target)) {
+        isNavCatOpen = false;
+        updateNavCatState(false);
+      }
+    });
+
+    // Grace hover delay so the menu NEVER snaps shut while moving the mouse
+    document.addEventListener('DOMContentLoaded', function() {
+      const container = document.getElementById('nav-cat-container');
+      if (container) {
+        container.addEventListener('mouseenter', function() {
+          clearTimeout(navCatTimer);
+          updateNavCatState(true);
+        });
+        container.addEventListener('mouseleave', function() {
+          navCatTimer = setTimeout(function() {
+            if (!isNavCatOpen) {
+              updateNavCatState(false);
+            }
+          }, 350); // 350ms of grace time
+        });
+      }
+    });
+
+  
+    // ==========================================
+    // TOGGLE FILTERS VISIBILITY (ON-DEMAND)
+    // ==========================================
+    let filtersVisible = false; // Hidden by default, appears only if user desires
+
+    function toggleFiltersPanel(forceState) {
+      if (typeof forceState === 'boolean') {
+        filtersVisible = forceState;
+      } else {
+        filtersVisible = !filtersVisible;
+      }
+
+      const sidebar = document.getElementById('catalog-filters-sidebar');
+      const grid = document.getElementById('catalog-grid');
+      const btn = document.getElementById('btn-toggle-filters');
+      const btnText = document.getElementById('btn-toggle-filters-text');
+
+      if (!sidebar || !grid) return;
+
+      if (filtersVisible) {
+        sidebar.classList.remove('hidden');
+        // Grid with sidebar: 4 columns
+        grid.className = "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5 transition-all";
+        if (btn) {
+          btn.className = "flex items-center gap-2 px-4 py-2 rounded-xl border border-[#0d823e] bg-emerald-50 text-[#0d823e] font-bold text-xs transition-all shadow-xs active:scale-95 cursor-pointer select-none";
+        }
+        if (btnText) btnText.innerText = "Ocultar Filtros";
+      } else {
+        sidebar.classList.add('hidden');
+        // Grid without sidebar: Expands to full width (5-6 columns on large screens)
+        grid.className = "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-4 sm:gap-5 transition-all";
+        if (btn) {
+          btn.className = "flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 bg-white hover:bg-emerald-50/50 hover:border-[#0d823e] text-gray-800 font-bold text-xs transition-all shadow-xs active:scale-95 cursor-pointer select-none";
+        }
+        if (btnText) btnText.innerText = "Filtros";
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+  </script>
+
+
+  <!-- SCRIPT MODAL ¿CÓMO COMPRAR? -->
+  <script>
+    function openComoComprarModal() {
+      const modal = document.getElementById('modal-como-comprar');
+      const card = document.getElementById('modal-como-comprar-card');
+      if (!modal) return;
+      modal.classList.remove('hidden');
+      requestAnimationFrame(() => {
+        modal.classList.remove('opacity-0');
+        if (card) {
+          card.classList.remove('scale-95');
+          card.classList.add('scale-100');
+        }
+      });
+      document.body.style.overflow = 'hidden';
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeComoComprarModal() {
+      const modal = document.getElementById('modal-como-comprar');
+      const card = document.getElementById('modal-como-comprar-card');
+      if (!modal) return;
+      modal.classList.add('opacity-0');
+      if (card) {
+        card.classList.remove('scale-100');
+        card.classList.add('scale-95');
+      }
+      setTimeout(() => {
+        modal.classList.add('hidden');
+        document.body.style.overflow = '';
+      }, 200);
+    }
+
+    function handleComoComprarBackdropClick(e) {
+      if (e.target.id === 'modal-como-comprar') {
+        closeComoComprarModal();
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeComoComprarModal();
+      }
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      if (window.location.hash === '#como-comprar') {
+        setTimeout(openComoComprarModal, 200);
+      }
+    });
+    window.addEventListener('hashchange', () => {
+      if (window.location.hash === '#como-comprar') {
+        openComoComprarModal();
+      }
+    });
+  
+    // ==========================================
+    // MOBILE NAVIGATION DRAWER
+    // ==========================================
+    function toggleMobileMenu(forceState) {
+      const drawer = document.getElementById('mobile-menu-drawer');
+      const overlay = document.getElementById('mobile-menu-overlay');
+      if (!drawer || !overlay) return;
+
+      const isCurrentlyClosed = drawer.classList.contains('translate-x-full');
+      const shouldOpen = (typeof forceState === 'boolean') ? forceState : isCurrentlyClosed;
+
+      if (shouldOpen) {
+        overlay.classList.remove('pointer-events-none');
+        overlay.classList.remove('opacity-0');
+        drawer.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+      } else {
+        overlay.classList.add('opacity-0');
+        overlay.classList.add('pointer-events-none');
+        drawer.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      }
+
+      // Sync mobile cart badge if cart exists
+      const desktopBadge = document.getElementById('cart-badge');
+      const mobileBadges = document.querySelectorAll('.mobile-cart-badge');
+      if (desktopBadge && mobileBadges.length > 0) {
+        mobileBadges.forEach(b => b.innerText = desktopBadge.innerText);
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) {
+        toggleMobileMenu(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        toggleMobileMenu(false);
+      }
+    });
+
+</script>
+
+  <!-- ========================================== -->
+  <!-- MOBILE NAVIGATION DRAWER (MENU HAMBURGUESA) -->
+  <!-- ========================================== -->
+  <div id="mobile-menu-overlay" onclick="toggleMobileMenu(false)" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <div id="mobile-menu-drawer" class="fixed top-0 right-0 w-[85%] max-w-sm h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-out flex flex-col justify-between overflow-y-auto">
+    
+    <!-- Drawer Header -->
+    <div class="p-5 border-b border-gray-100 flex items-center justify-between bg-[#fbfdfc] shrink-0">
+      <a href="index.html" onclick="toggleMobileMenu(false)" class="flex items-center gap-2.5 select-none">
+        <img src="assets/logo_icon.png" alt="BOXINERA" class="h-9 w-auto object-contain">
+        <div class="flex flex-col justify-center">
+          <span class="block text-base font-black text-gray-900 tracking-wider leading-none uppercase font-sans">BOXINERA</span>
+          <span class="block text-[10px] font-bold text-gray-700 leading-tight lowercase font-sans -mt-0.5">importadora</span>
+        </div>
+      </a>
+      <button 
+        type="button" 
+        onclick="toggleMobileMenu(false)" 
+        class="w-9 h-9 rounded-full bg-gray-100 hover:bg-gray-200 text-gray-600 flex items-center justify-center transition-colors cursor-pointer"
+        aria-label="Cerrar menú"
+      >
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+    </div>
+
+    <!-- Drawer Navigation Links -->
+    <div class="p-5 space-y-6 flex-1 overflow-y-auto">
+      
+      <!-- Primary Links -->
+      <div class="space-y-1">
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-400 px-3 mb-2">Navegación</p>
+        
+        <a 
+          href="index.html" 
+          onclick="toggleMobileMenu(false)" 
+          class="flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-bold text-gray-800 hover:bg-brand-50 hover:text-[#0d823e] transition-colors"
+        >
+          <i data-lucide="home" class="w-4 h-4 text-[#0d823e]"></i>
+          <span>Inicio</span>
+        </a>
+
+        <a 
+          href="catalogo.html" 
+          onclick="toggleMobileMenu(false)" 
+          class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-sm font-bold text-gray-800 hover:bg-brand-50 hover:text-[#0d823e] transition-colors"
+        >
+          <span class="flex items-center gap-3">
+            <i data-lucide="sparkles" class="w-4 h-4 text-[#0d823e]"></i>
+            <span>Catálogo Completo</span>
+          </span>
+          <span class="text-[10px] font-extrabold bg-[#e8f7ee] text-[#0d823e] px-2 py-0.5 rounded-full">1.936</span>
+        </a>
+      </div>
+
+      <!-- Categories Block -->
+      <div class="space-y-1">
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-400 px-3 mb-2">Categorías</p>
+
+        <a 
+          href="catalogo.html?categoria=Perfumería" 
+          onclick="toggleMobileMenu(false)" 
+          class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-700 hover:bg-emerald-50 hover:text-[#0d823e] transition-colors"
+        >
+          <span class="flex items-center gap-2.5">
+            <span class="text-base">🧴</span>
+            <span>Perfumería de Lujo</span>
+          </span>
+          <span class="text-[10px] font-bold text-gray-400">1.402</span>
+        </a>
+
+        <a 
+          href="catalogo.html?categoria=Body%20Splash" 
+          onclick="toggleMobileMenu(false)" 
+          class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-700 hover:bg-pink-50 hover:text-pink-600 transition-colors"
+        >
+          <span class="flex items-center gap-2.5">
+            <span class="text-base">🌸</span>
+            <span>Body Splash Mayorista</span>
+          </span>
+          <span class="text-[10px] font-bold text-pink-600 bg-pink-50 px-2 py-0.5 rounded-full">99</span>
+        </a>
+
+        <a 
+          href="catalogo.html?categoria=Gorras" 
+          onclick="toggleMobileMenu(false)" 
+          class="flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-700 hover:bg-amber-50 hover:text-amber-700 transition-colors"
+        >
+          <span class="flex items-center gap-2.5">
+            <span class="text-base">🧢</span>
+            <span>Gorras Mayoristas (25u)</span>
+          </span>
+          <span class="text-[10px] font-bold text-amber-800 bg-amber-50 px-2 py-0.5 rounded-full">435</span>
+        </a>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="space-y-1 pt-2 border-t border-gray-100">
+        <p class="text-[10px] font-extrabold uppercase tracking-wider text-gray-400 px-3 mb-2">Ayuda y Compra</p>
+
+        <button 
+          type="button" 
+          onclick="toggleMobileMenu(false); setTimeout(openComoComprarModal, 250);" 
+          class="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-800 hover:bg-brand-50 hover:text-[#0d823e] transition-colors text-left cursor-pointer"
+        >
+          <i data-lucide="help-circle" class="w-4 h-4 text-[#0d823e]"></i>
+          <span>¿Cómo comprar? (Guía paso a paso)</span>
+        </button>
+
+        <button 
+          type="button" 
+          onclick="toggleMobileMenu(false); setTimeout(toggleCart, 250);" 
+          class="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-bold text-gray-800 hover:bg-brand-50 hover:text-[#0d823e] transition-colors text-left cursor-pointer"
+        >
+          <span class="flex items-center gap-3">
+            <i data-lucide="shopping-bag" class="w-4 h-4 text-[#0d823e]"></i>
+            <span>Ver mi Pedido</span>
+          </span>
+          <span class="mobile-cart-badge text-[10px] font-extrabold bg-[#0d823e] text-white px-2 py-0.5 rounded-full">0</span>
+        </button>
+
+        <a 
+          href="terminos-y-condiciones.html" 
+          onclick="toggleMobileMenu(false)" 
+          class="flex items-center gap-3 px-3.5 py-2 rounded-xl text-xs font-medium text-gray-500 hover:text-gray-800 transition-colors"
+        >
+          <i data-lucide="file-text" class="w-3.5 h-3.5 text-gray-400"></i>
+          <span>Términos y Condiciones</span>
+        </a>
+      </div>
+
+      <!-- WhatsApp Direct Card -->
+      <div class="p-4 bg-gradient-to-br from-[#f0f9f3] to-emerald-50 rounded-2xl border border-emerald-200/70 text-xs">
+        <div class="flex items-center gap-2 font-bold text-gray-900 mb-1">
+          <span class="w-2 h-2 rounded-full bg-[#25D366] animate-pulse"></span>
+          <span>¿Consultas o pedidos?</span>
+        </div>
+        <p class="text-[11px] text-gray-600 mb-3 leading-relaxed">
+          Atención personalizada inmediata por nuestro WhatsApp oficial.
+        </p>
+        <a 
+          href="https://wa.me/5493816371332?text=Hola%20Boxinera!%20Quiero%20hacer%20una%20consulta%20sobre%20los%20productos" 
+          target="_blank" rel="noopener noreferrer" 
+          class="w-full py-2.5 px-3 rounded-xl bg-[#0d823e] hover:bg-[#0ba04a] text-white font-bold text-xs flex items-center justify-center gap-2 shadow-xs transition-colors"
+        >
+          <i data-lucide="message-circle" class="w-4 h-4 fill-white"></i>
+          <span>Escribir por WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Drawer Footer -->
+    <div class="p-5 border-t border-gray-100 bg-gray-50/80 shrink-0 text-center">
+      <div class="flex items-center justify-center gap-4 text-gray-500 mb-2">
+        <a href="https://www.instagram.com/boxineraa/" target="_blank" rel="noopener noreferrer" class="hover:text-pink-600 transition-colors">
+          <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+  <rect width="20" height="20" x="2" y="2" rx="5" ry="5"/>
+  <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+  <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/>
+</svg>
+        </a>
+        <a href="https://wa.me/5493816371332" target="_blank" rel="noopener noreferrer" class="hover:text-emerald-600 transition-colors">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+        </a>
+      </div>
+      <p class="text-[10px] text-gray-400">© 2026 BOXINERA Importadora · Envíos a todo el país</p>
+    </div>
+
+  </div>
+
+</body>
+</html>

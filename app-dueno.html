@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>BOXINERA | App Dueño</title>
+  
+  <!-- PWA & Mobile Web App Meta Tags -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Boxinera Admin">
+  <meta name="theme-color" content="#030a05">
+  <link rel="apple-touch-icon" href="assets/logo_icon.png">
+  <link rel="icon" type="image/png" href="assets/logo_icon.png">
+
+  <!-- Tailwind CSS & Lucide Icons -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              neon: '#00e676',
+              500: '#10b969',
+              600: '#059654',
+              900: '#064e2e',
+              dark: '#030a05',
+              card: '#09150d'
+            }
+          },
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', 'Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Supabase JS Client CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <!-- Local Database Cache (1.936 products for instant load) -->
+  <script src="assets/perfumes_data.js"></script>
+
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; -webkit-tap-highlight-color: transparent; }
+    /* Hide scrollbar for clean app feel */
+    ::-webkit-scrollbar { display: none; }
+    /* iOS Safe area padding */
+    .pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+    .pt-safe { padding-top: env(safe-area-inset-top, 16px); }
+  </style>
+</head>
+<body class="bg-[#030a05] text-gray-100 min-h-screen flex flex-col select-none antialiased">
+
+  <!-- ======================================================== -->
+  <!-- 1. LOGIN SCREEN GATE (ACCESO PRIVADO DEL DUEÑO)         -->
+  <!-- ======================================================== -->
+  <div id="login-gate" class="fixed inset-0 z-50 bg-[#030a05] flex flex-col justify-between p-6 pt-safe pb-safe">
+    <div class="my-auto max-w-sm mx-auto w-full text-center space-y-6">
+      
+      <!-- Logo Icon -->
+      <div class="inline-flex items-center justify-center w-20 h-20 rounded-3xl bg-brand-neon/10 border border-brand-neon/30 text-brand-neon shadow-2xl shadow-brand-neon/20 mx-auto">
+        <img src="assets/logo_icon.png" alt="BOXINERA" class="w-12 h-12 object-contain">
+      </div>
+
+      <div>
+        <h1 class="text-2xl font-black text-white tracking-tight uppercase">BOXINERA</h1>
+        <p class="text-xs font-bold text-brand-neon tracking-widest uppercase mt-1">App Móvil del Dueño</p>
+        <p class="text-xs text-gray-400 mt-2">Control total de precios e inventario en la web desde tu celular.</p>
+      </div>
+
+      <!-- Auth Form -->
+      <form onsubmit="handleMobileLogin(event)" class="space-y-4 text-left">
+        <div>
+          <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5">PIN o Clave de Acceso</label>
+          <div class="relative">
+            <i data-lucide="lock" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500"></i>
+            <input 
+              type="password" 
+              id="mobile-pin-input" 
+              required
+              placeholder="••••••••" 
+              class="w-full pl-10 pr-10 py-3.5 bg-[#0a180e] border border-brand-900 rounded-2xl text-sm text-white focus:outline-none focus:border-brand-neon"
+            >
+            <button type="button" onclick="togglePinVisibility()" class="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400">
+              <i data-lucide="eye" id="pin-eye-icon" class="w-4 h-4"></i>
+            </button>
+          </div>
+          <p id="mobile-login-error" class="hidden text-xs text-rose-400 mt-2 font-semibold flex items-center gap-1">
+            <i data-lucide="alert-circle" class="w-3.5 h-3.5"></i>
+            <span>PIN incorrecto. Intentá nuevamente.</span>
+          </p>
+        </div>
+
+        <div class="flex items-center justify-between text-xs text-gray-400">
+          <label class="flex items-center gap-2 cursor-pointer">
+            <input type="checkbox" id="mobile-remember" class="rounded bg-black/40 border-gray-700 text-brand-500" checked>
+            <span>Mantener sesión en este celular</span>
+          </label>
+        </div>
+
+        <button 
+          type="submit" 
+          class="w-full py-4 rounded-2xl bg-gradient-to-r from-brand-600 via-brand-500 to-brand-neon text-black font-extrabold text-sm shadow-xl shadow-brand-500/25 active:scale-95 transition-all flex items-center justify-center gap-2"
+        >
+          <i data-lucide="unlock" class="w-4 h-4 stroke-[2.5]"></i>
+          <span>Ingresar a la App</span>
+        </button>
+      </form>
+
+      <p class="text-[11px] text-gray-500">
+        PIN por defecto: <code class="text-brand-neon">boxinera2026</code>
+      </p>
+    </div>
+
+    <!-- Footer Advice -->
+    <div class="text-center text-[11px] text-gray-500">
+      <p>💡 Tip: En Safari tocá <strong>Compartir > Agregar a inicio</strong> para tener el ícono de la app en tu pantalla.</p>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 2. MAIN APP SHELL (VISTA MÓVIL DEL DUEÑO)                -->
+  <!-- ======================================================== -->
+  <div id="app-shell" class="hidden flex-1 flex flex-col pb-24">
+
+    <!-- Top App Header -->
+    <header class="sticky top-0 z-40 bg-[#06140a]/95 backdrop-blur-lg border-b border-brand-900/60 pt-safe px-4 py-3">
+      <div class="flex items-center justify-between">
+        
+        <!-- Left: Logo & Status Pill -->
+        <div class="flex items-center gap-2.5">
+          <img src="assets/logo_icon.png" alt="BOXINERA" class="w-8 h-8 object-contain">
+          <div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-xs font-black text-white tracking-wider uppercase">BOXINERA</span>
+              <span id="cloud-status-pill" class="text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                <span>Nube Activa</span>
+              </span>
+            </div>
+            <p class="text-[10px] text-gray-400" id="header-product-counter">1.936 productos en la web</p>
+          </div>
+        </div>
+
+        <!-- Right: Cloud Settings & Logout -->
+        <div class="flex items-center gap-2">
+          <button onclick="openConfigModal()" class="w-9 h-9 rounded-xl bg-white/5 border border-brand-900 text-gray-300 flex items-center justify-center active:scale-95 transition-all">
+            <i data-lucide="cloud" class="w-4 h-4 text-brand-neon"></i>
+          </button>
+          <button onclick="handleLogout()" class="w-9 h-9 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 flex items-center justify-center active:scale-95 transition-all">
+            <i data-lucide="log-out" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Quick Search Bar -->
+      <div class="mt-3 relative">
+        <i data-lucide="search" class="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400"></i>
+        <input 
+          type="text" 
+          id="mobile-search-input" 
+          oninput="handleSearch(this.value)"
+          placeholder="Buscar perfume, gorra (ej. CV-01) o marca..." 
+          class="w-full pl-10 pr-10 py-2.5 bg-[#0a180e] border border-brand-900 rounded-xl text-xs text-white placeholder-gray-500 focus:outline-none focus:border-brand-neon"
+        >
+        <button onclick="clearSearch()" id="mobile-search-clear" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-gray-400">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Category Filter Chips -->
+      <div class="flex items-center gap-1.5 mt-2.5 overflow-x-auto pb-1 text-xs">
+        <button onclick="filterCategory('Todas')" id="chip-Todas" class="px-3 py-1.5 rounded-xl font-bold bg-brand-neon text-black shrink-0 transition-all">
+          Todas
+        </button>
+        <button onclick="filterCategory('Perfumería')" id="chip-Perfumería" class="px-3 py-1.5 rounded-xl font-bold bg-[#0a180e] text-gray-300 border border-brand-900 shrink-0 transition-all">
+          🧴 Perfumería
+        </button>
+        <button onclick="filterCategory('Body Splash')" id="chip-Body Splash" class="px-3 py-1.5 rounded-xl font-bold bg-[#0a180e] text-pink-300 border border-brand-900 shrink-0 transition-all">
+          🌸 Body Splash
+        </button>
+        <button onclick="filterCategory('Gorras')" id="chip-Gorras" class="px-3 py-1.5 rounded-xl font-bold bg-[#0a180e] text-amber-300 border border-brand-900 shrink-0 transition-all">
+          🧢 Gorras
+        </button>
+      </div>
+
+    </header>
+
+    <!-- Products List View -->
+    <main class="flex-1 p-4 space-y-3">
+      <div class="flex items-center justify-between text-[11px] text-gray-400 px-1">
+        <span>Mostrando <strong id="showing-count" class="text-white">0</strong> productos</span>
+        <span class="text-brand-neon font-bold">⚡ Toca el precio para editar</span>
+      </div>
+
+      <!-- Dynamic Cards Container -->
+      <div id="products-list-container" class="space-y-2.5">
+        <!-- Rendered by JS -->
+      </div>
+
+      <!-- Mobile Pagination Buttons -->
+      <div id="mobile-pagination" class="flex items-center justify-between gap-3 pt-4">
+        <button onclick="prevPage()" id="btn-prev" class="flex-1 py-3 bg-[#0a180e] border border-brand-900 rounded-xl text-xs font-bold text-white disabled:opacity-30 disabled:pointer-events-none active:scale-95">
+          ← Anteriores
+        </button>
+        <span id="page-indicator" class="text-xs text-gray-400 font-bold shrink-0">1 / 1</span>
+        <button onclick="nextPage()" id="btn-next" class="flex-1 py-3 bg-[#0a180e] border border-brand-900 rounded-xl text-xs font-bold text-white disabled:opacity-30 disabled:pointer-events-none active:scale-95">
+          Siguientes →
+        </button>
+      </div>
+    </main>
+
+    <!-- Bottom Mobile App Navigation Bar -->
+    <nav class="fixed bottom-0 left-0 right-0 z-40 bg-[#06140a]/95 backdrop-blur-lg border-t border-brand-900/60 pb-safe px-6 py-2 flex items-center justify-between">
+      
+      <button onclick="scrollToTop()" class="flex flex-col items-center gap-1 text-brand-neon">
+        <i data-lucide="tag" class="w-5 h-5"></i>
+        <span class="text-[10px] font-bold">Precios</span>
+      </button>
+
+      <button onclick="openAddModal()" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-colors">
+        <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-brand-600 to-brand-neon text-black flex items-center justify-center -mt-5 shadow-lg shadow-brand-500/30">
+          <i data-lucide="plus" class="w-5 h-5 stroke-[3]"></i>
+        </div>
+        <span class="text-[10px] font-bold text-brand-neon">Nuevo</span>
+      </button>
+
+      <button onclick="openBulkModal()" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-colors">
+        <i data-lucide="percent" class="w-5 h-5"></i>
+        <span class="text-[10px] font-bold">Ajuste %</span>
+      </button>
+
+      <button onclick="openConfigModal()" class="flex flex-col items-center gap-1 text-gray-400 hover:text-white transition-colors">
+        <i data-lucide="settings" class="w-5 h-5"></i>
+        <span class="text-[10px] font-bold">Nube</span>
+      </button>
+
+    </nav>
+
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 3. QUICK PRICE EDIT MODAL (POPUP RÁPIDO)                 -->
+  <!-- ======================================================== -->
+  <div id="quick-price-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-md bg-[#0a180e] border-t sm:border border-brand-900 rounded-t-3xl sm:rounded-3xl p-6 pb-safe space-y-4">
+      
+      <div class="flex items-center justify-between border-b border-brand-900/60 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-brand-neon/15 text-brand-neon flex items-center justify-center">
+            <i data-lucide="edit-3" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-white" id="edit-modal-prod-name">Cambiar Precio</h3>
+            <span class="text-[10px] text-gray-400" id="edit-modal-prod-details">Detalles</span>
+          </div>
+        </div>
+        <button onclick="closeQuickPriceModal()" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <input type="hidden" id="edit-prod-id">
+
+      <!-- New Price Input -->
+      <div>
+        <label class="block text-[11px] font-bold text-gray-300 uppercase tracking-wider mb-1.5">Nuevo Precio en la Web ($ ARS)</label>
+        <div class="relative">
+          <span class="absolute left-4 top-1/2 -translate-y-1/2 text-brand-neon font-black text-xl">$</span>
+          <input 
+            type="number" 
+            id="edit-prod-price-input" 
+            inputmode="numeric"
+            step="100"
+            class="w-full pl-9 pr-4 py-3.5 bg-[#040c06] border border-brand-900 rounded-2xl text-xl font-black text-brand-neon focus:outline-none focus:border-brand-neon"
+          >
+        </div>
+      </div>
+
+      <!-- Quick % Buttons -->
+      <div class="grid grid-cols-4 gap-2 text-xs">
+        <button type="button" onclick="adjustQuickPrice(5)" class="py-2 bg-white/5 border border-brand-900/60 rounded-xl text-brand-neon font-bold active:scale-95">+5%</button>
+        <button type="button" onclick="adjustQuickPrice(10)" class="py-2 bg-white/5 border border-brand-900/60 rounded-xl text-brand-neon font-bold active:scale-95">+10%</button>
+        <button type="button" onclick="adjustQuickPrice(15)" class="py-2 bg-white/5 border border-brand-900/60 rounded-xl text-brand-neon font-bold active:scale-95">+15%</button>
+        <button type="button" onclick="adjustQuickPrice(-10)" class="py-2 bg-white/5 border border-brand-900/60 rounded-xl text-rose-400 font-bold active:scale-95">-10%</button>
+      </div>
+
+      <!-- Optional Old Price -->
+      <div>
+        <label class="block text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">Precio Anterior / Tachado (Opcional)</label>
+        <input 
+          type="number" 
+          id="edit-prod-old-price-input" 
+          inputmode="numeric"
+          placeholder="Dejar vacío si no es oferta"
+          class="w-full px-3 py-2 bg-[#040c06] border border-brand-900 rounded-xl text-xs text-gray-300 focus:outline-none focus:border-brand-neon"
+        >
+      </div>
+
+      <!-- Stock Switch -->
+      <div class="flex items-center justify-between p-3 bg-[#040c06] border border-brand-900 rounded-xl">
+        <span class="text-xs font-bold text-white">Disponible en Stock</span>
+        <input type="checkbox" id="edit-prod-instock" class="w-5 h-5 accent-emerald-500 rounded cursor-pointer">
+      </div>
+
+      <!-- Save Button -->
+      <button 
+        onclick="saveQuickPrice()" 
+        class="w-full py-4 rounded-2xl bg-gradient-to-r from-brand-600 via-brand-500 to-brand-neon text-black font-extrabold text-sm shadow-xl shadow-brand-500/25 active:scale-95 transition-all flex items-center justify-center gap-2"
+      >
+        <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i>
+        <span>Guardar y Reflejar en la Web</span>
+      </button>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 4. ADD NEW PRODUCT MODAL (CON CÁMARA DEL CELULAR)        -->
+  <!-- ======================================================== -->
+  <div id="add-product-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div class="w-full max-w-lg bg-[#0a180e] border-t sm:border border-brand-900 rounded-t-3xl sm:rounded-3xl p-6 pb-safe space-y-4 my-auto">
+      
+      <div class="flex items-center justify-between border-b border-brand-900/60 pb-3">
+        <div class="flex items-center gap-2.5">
+          <div class="w-8 h-8 rounded-xl bg-brand-neon/15 text-brand-neon flex items-center justify-center">
+            <i data-lucide="plus-circle" class="w-4 h-4"></i>
+          </div>
+          <div>
+            <h3 class="text-sm font-black text-white">Agregar Producto a la Web</h3>
+            <p class="text-[10px] text-gray-400">Podés sacar la foto directo con la cámara de tu celular.</p>
+          </div>
+        </div>
+        <button onclick="closeAddModal()" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <form onsubmit="handleSaveNewProduct(event)" class="space-y-3.5 text-xs">
+        
+        <!-- Photo Selection / Camera -->
+        <div class="p-3 bg-[#040c06] border border-brand-900 rounded-2xl flex items-center gap-3">
+          <div id="add-photo-preview-box" class="w-16 h-16 rounded-xl bg-[#0a180e] border border-brand-900 flex items-center justify-center overflow-hidden shrink-0">
+            <img id="add-photo-preview-img" src="" class="hidden w-full h-full object-contain">
+            <i data-lucide="camera" id="add-photo-icon" class="w-6 h-6 text-gray-600"></i>
+          </div>
+          <div class="flex-1 space-y-1.5">
+            <label class="px-3 py-1.5 rounded-xl bg-brand-neon/15 text-brand-neon border border-brand-neon/30 font-bold inline-flex items-center gap-1.5 cursor-pointer active:scale-95">
+              <i data-lucide="camera" class="w-3.5 h-3.5"></i>
+              <span>Sacar Foto / Galería</span>
+              <input type="file" accept="image/*" capture="environment" onchange="handleCameraPhoto(this)" class="hidden">
+            </label>
+            <p class="text-[10px] text-gray-500">Si no tenés foto, el sistema genera el frasco de lujo automáticamente.</p>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-300 uppercase tracking-wider mb-1">Nombre del Producto *</label>
+          <input type="text" id="new-name" required placeholder="Ej: Sauvage Elixir 100ml" class="w-full px-3 py-2.5 bg-[#040c06] border border-brand-900 rounded-xl text-white focus:outline-none focus:border-brand-neon">
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-gray-300 uppercase tracking-wider mb-1">Categoría *</label>
+            <select id="new-category" required class="w-full px-3 py-2.5 bg-[#040c06] border border-brand-900 rounded-xl text-white focus:outline-none focus:border-brand-neon">
+              <option value="Perfumería">🧴 Perfumería</option>
+              <option value="Body Splash">🌸 Body Splash</option>
+              <option value="Gorras">🧢 Gorras</option>
+              <option value="Otro">📦 Otro</option>
+            </select>
+          </div>
+          <div>
+            <label class="block font-bold text-gray-300 uppercase tracking-wider mb-1">Marca *</label>
+            <input type="text" id="new-brand" required placeholder="Ej: Dior, Afnan..." class="w-full px-3 py-2.5 bg-[#040c06] border border-brand-900 rounded-xl text-white focus:outline-none focus:border-brand-neon">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block font-bold text-gray-300 uppercase tracking-wider mb-1">Precio Venta (ARS) *</label>
+            <input type="number" id="new-price" required step="100" placeholder="185000" class="w-full px-3 py-2.5 bg-[#040c06] border border-brand-900 rounded-xl text-brand-neon font-bold focus:outline-none focus:border-brand-neon">
+          </div>
+          <div>
+            <label class="block font-bold text-gray-400 uppercase tracking-wider mb-1">Precio Tachado</label>
+            <input type="number" id="new-old-price" step="100" placeholder="Opcional" class="w-full px-3 py-2.5 bg-[#040c06] border border-brand-900 rounded-xl text-gray-400 focus:outline-none focus:border-brand-neon">
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-4 mt-2 rounded-2xl bg-gradient-to-r from-brand-600 to-brand-neon text-black font-extrabold text-sm shadow-xl shadow-brand-500/25 active:scale-95 flex items-center justify-center gap-2">
+          <i data-lucide="check" class="w-4 h-4 stroke-[3]"></i>
+          <span>Publicar en la Web Ahora</span>
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 5. BULK % MODAL                                          -->
+  <!-- ======================================================== -->
+  <div id="bulk-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-md bg-[#0a180e] border-t sm:border border-brand-900 rounded-t-3xl sm:rounded-3xl p-6 pb-safe space-y-4">
+      <div class="flex items-center justify-between border-b border-brand-900/60 pb-3">
+        <h3 class="text-sm font-black text-white">Ajuste Masivo de Precios (%)</h3>
+        <button onclick="closeBulkModal()" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-gray-300 mb-1">Categoría a modificar</label>
+          <select id="bulk-cat" class="w-full px-3 py-2.5 bg-[#040c06] border border-brand-900 rounded-xl text-white">
+            <option value="all">Todo el Catálogo (1.936 productos)</option>
+            <option value="Perfumería">Solo Perfumería</option>
+            <option value="Body Splash">Solo Body Splash</option>
+            <option value="Gorras">Solo Gorras</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-300 mb-1">Porcentaje (+ aumenta, - baja)</label>
+          <input type="number" id="bulk-pct" step="0.5" placeholder="Ej: 10 para aumentar 10%" class="w-full px-3 py-3 bg-[#040c06] border border-brand-900 rounded-xl text-brand-neon font-black text-lg">
+        </div>
+
+        <button onclick="applyBulk()" class="w-full py-3.5 rounded-xl bg-brand-neon text-black font-extrabold text-xs active:scale-95">
+          Aplicar y Actualizar Precios
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- 6. CLOUD CONFIG MODAL                                    -->
+  <!-- ======================================================== -->
+  <div id="config-modal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="w-full max-w-md bg-[#0a180e] border-t sm:border border-brand-900 rounded-t-3xl sm:rounded-3xl p-6 pb-safe space-y-4">
+      <div class="flex items-center justify-between border-b border-brand-900/60 pb-3">
+        <div class="flex items-center gap-2">
+          <i data-lucide="cloud" class="w-4 h-4 text-brand-neon"></i>
+          <h3 class="text-sm font-black text-white">Configuración Nube (Supabase)</h3>
+        </div>
+        <button onclick="closeConfigModal()" class="text-gray-400 hover:text-white p-1">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <p class="text-[11px] text-gray-400 leading-relaxed">
+          Pegá la URL y la Anon Key de tu proyecto gratuito de Supabase para que los cambios se transmitan instantáneamente a la web.
+        </p>
+
+        <div>
+          <label class="block font-bold text-gray-300 mb-1">Project URL</label>
+          <input type="text" id="cfg-supabase-url" placeholder="https://xxxx.supabase.co" class="w-full px-3 py-2 bg-[#040c06] border border-brand-900 rounded-xl text-white text-[11px]">
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-300 mb-1">Anon / Service Key</label>
+          <input type="password" id="cfg-supabase-key" placeholder="eyJhbGciOi..." class="w-full px-3 py-2 bg-[#040c06] border border-brand-900 rounded-xl text-white text-[11px]">
+        </div>
+
+        <button onclick="saveCloudConfig()" class="w-full py-3.5 rounded-xl bg-brand-neon text-black font-extrabold text-xs active:scale-95">
+          Guardar Conexión Nube
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="mobile-toast" class="fixed top-5 left-4 right-4 z-50 transform -translate-y-20 transition-all duration-300 opacity-0 pointer-events-none">
+    <div class="bg-gradient-to-r from-emerald-600 to-brand-neon text-black font-extrabold text-xs px-4 py-3 rounded-2xl shadow-2xl flex items-center justify-center gap-2">
+      <i data-lucide="check-circle" class="w-4 h-4"></i>
+      <span id="toast-text">Cambio guardado en la web</span>
+    </div>
+  </div>
+
+  <!-- ======================================================== -->
+  <!-- JAVASCRIPT APP LOGIC                                     -->
+  <!-- ======================================================== -->
+  <script>
+    let appProducts = [];
+    let currentCategory = 'Todas';
+    let searchQuery = '';
+    let currentPage = 1;
+    const ITEMS_PER_PAGE = 20;
+    let newPhotoBase64 = '';
+
+    // Supabase instance
+    let supabaseClient = null;
+
+    // 1. AUTH & INIT
+    document.addEventListener('DOMContentLoaded', () => {
+      initApp();
+    });
+
+    function initApp() {
+      // Check saved session
+      const savedAuth = localStorage.getItem('boxinera_mobile_auth');
+      if (savedAuth === 'true') {
+        unlockApp();
+      } else {
+        document.getElementById('login-gate').classList.remove('hidden');
+      }
+
+      // Initialize Supabase if configured
+      initSupabase();
+
+      // Load products
+      loadProductsData();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function handleMobileLogin(e) {
+      e.preventDefault();
+      const enteredPin = document.getElementById('mobile-pin-input').value.trim();
+      const storedPin = localStorage.getItem('boxinera_admin_pin') || 'boxinera2026';
+
+      if (enteredPin === storedPin) {
+        if (document.getElementById('mobile-remember').checked) {
+          localStorage.setItem('boxinera_mobile_auth', 'true');
+        }
+        unlockApp();
+      } else {
+        document.getElementById('mobile-login-error').classList.remove('hidden');
+      }
+    }
+
+    function unlockApp() {
+      document.getElementById('login-gate').classList.add('hidden');
+      document.getElementById('app-shell').classList.remove('hidden');
+      renderProductsList();
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function handleLogout() {
+      localStorage.removeItem('boxinera_mobile_auth');
+      window.location.reload();
+    }
+
+    function togglePinVisibility() {
+      const input = document.getElementById('mobile-pin-input');
+      input.type = (input.type === 'password') ? 'text' : 'password';
+    }
+
+    // 2. SUPABASE CONNECTION
+    function initSupabase() {
+      const url = localStorage.getItem('boxinera_sb_url') || window.BOXINERA_SUPABASE_URL || '';
+      const key = localStorage.getItem('boxinera_sb_key') || window.BOXINERA_SUPABASE_ANON_KEY || '';
+
+      const pill = document.getElementById('cloud-status-pill');
+
+      if (url && key && window.supabase) {
+        try {
+          supabaseClient = window.supabase.createClient(url, key);
+          pill.className = "text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/30 flex items-center gap-1";
+          pill.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span><span>Nube Conectada</span>`;
+          syncFromSupabase();
+        } catch (e) {
+          pill.className = "text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1";
+          pill.innerHTML = `<span>Modo Local</span>`;
+        }
+      } else {
+        pill.className = "text-[9px] font-extrabold px-1.5 py-0.2 rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/30 flex items-center gap-1";
+        pill.innerHTML = `<span>Almacenamiento Local</span>`;
+      }
+    }
+
+    async function syncFromSupabase() {
+      if (!supabaseClient) return;
+      try {
+        const { data, error } = await supabaseClient
+          .from('products')
+          .select('*')
+          .order('id', { ascending: false });
+
+        if (!error && Array.isArray(data) && data.length > 0) {
+          appProducts = data.map(p => ({
+            id: p.id,
+            code: p.code,
+            name: p.name,
+            brand: p.brand,
+            category: p.category,
+            details: p.details,
+            price: Number(p.price),
+            oldPrice: p.old_price ? Number(p.old_price) : null,
+            badge: p.badge,
+            image: p.image,
+            inStock: p.in_stock,
+            wholesale: p.wholesale
+          }));
+          localStorage.setItem('boxinera_custom_products', JSON.stringify(appProducts));
+          renderProductsList();
+          showToast("Sincronizado con la nube");
+        }
+      } catch (e) {
+        console.warn("Could not sync from supabase:", e);
+      }
+    }
+
+    // 3. LOAD DATA
+    function loadProductsData() {
+      const custom = localStorage.getItem('boxinera_custom_products');
+      if (custom) {
+        try {
+          const parsed = JSON.parse(custom);
+          if (Array.isArray(parsed) && parsed.length >= 1000) {
+            appProducts = parsed;
+          }
+        } catch(e) {}
+      }
+
+      if (appProducts.length === 0) {
+        const fromWin = (typeof window.BOXINERA_ALL_PRODUCTS !== 'undefined' && Array.isArray(window.BOXINERA_ALL_PRODUCTS))
+          ? window.BOXINERA_ALL_PRODUCTS
+          : [];
+        appProducts = JSON.parse(JSON.stringify(fromWin));
+      }
+
+      document.getElementById('header-product-counter').innerText = `${appProducts.length.toLocaleString('es-AR')} productos en la web`;
+    }
+
+    function persistProducts() {
+      localStorage.setItem('boxinera_custom_products', JSON.stringify(appProducts));
+      document.getElementById('header-product-counter').innerText = `${appProducts.length.toLocaleString('es-AR')} productos en la web`;
+    }
+
+    // 4. RENDERING LIST
+    function renderProductsList() {
+      const container = document.getElementById('products-list-container');
+      if (!container) return;
+
+      const filtered = appProducts.filter(p => {
+        if (currentCategory !== 'Todas' && p.category !== currentCategory) return false;
+        if (!searchQuery) return true;
+        const norm = (p.name + ' ' + (p.code || '') + ' ' + (p.brand || '')).toLowerCase();
+        return norm.includes(searchQuery);
+      });
+
+      document.getElementById('showing-count').innerText = filtered.length.toLocaleString('es-AR');
+
+      const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE) || 1;
+      if (currentPage > totalPages) currentPage = totalPages;
+      const start = (currentPage - 1) * ITEMS_PER_PAGE;
+      const pageItems = filtered.slice(start, start + ITEMS_PER_PAGE);
+
+      document.getElementById('page-indicator').innerText = `${currentPage} / ${totalPages}`;
+      document.getElementById('btn-prev').disabled = (currentPage === 1);
+      document.getElementById('btn-next').disabled = (currentPage === totalPages);
+
+      if (pageItems.length === 0) {
+        container.innerHTML = `
+          <div class="py-12 text-center text-gray-500">
+            <i data-lucide="package-search" class="w-8 h-8 mx-auto mb-2 opacity-40"></i>
+            <p class="font-bold text-xs">No se encontraron productos.</p>
+          </div>
+        `;
+      } else {
+        container.innerHTML = pageItems.map(p => {
+          const imgTag = p.image 
+            ? `<img src="${p.image}" class="w-12 h-12 rounded-xl object-contain bg-[#030c05] border border-brand-900/60 p-0.5 shrink-0">`
+            : `<div class="w-12 h-12 rounded-xl bg-[#0a180e] border border-brand-900/60 flex items-center justify-center text-[10px] text-brand-neon font-black shrink-0">BOX</div>`;
+
+          const stockPill = (p.inStock !== false)
+            ? `<span class="text-[9px] font-extrabold text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">En Stock</span>`
+            : `<span class="text-[9px] font-extrabold text-rose-400 bg-rose-500/10 px-2 py-0.5 rounded-full border border-rose-500/20">Pausado</span>`;
+
+          const oldPriceTag = p.oldPrice ? `<span class="text-[10px] text-gray-500 line-through">$ ${p.oldPrice.toLocaleString('es-AR')}</span>` : '';
+
+          return `
+            <div class="bg-[#09150d] border border-brand-900/60 rounded-2xl p-3 flex items-center justify-between gap-3 active:bg-[#0c2415] transition-colors" onclick="openQuickPriceModal(${p.id})">
+              
+              <div class="flex items-center gap-3 overflow-hidden">
+                ${imgTag}
+                <div class="truncate">
+                  <div class="flex items-center gap-1.5 mb-0.5">
+                    <span class="text-[9px] font-mono font-bold text-brand-neon">${p.code || ('#' + p.id)}</span>
+                    ${stockPill}
+                  </div>
+                  <h4 class="text-xs font-bold text-white truncate">${p.name}</h4>
+                  <p class="text-[10px] text-gray-400 truncate">${p.brand || 'BOXINERA'} · ${p.details || p.category}</p>
+                </div>
+              </div>
+
+              <!-- Price Box -->
+              <div class="text-right shrink-0">
+                ${oldPriceTag}
+                <div class="text-sm font-black text-brand-neon flex items-center justify-end gap-1">
+                  <span>$ ${Number(p.price).toLocaleString('es-AR')}</span>
+                  <i data-lucide="edit-2" class="w-3 h-3 text-brand-neon/60"></i>
+                </div>
+              </div>
+
+            </div>
+          `;
+        }).join('');
+      }
+
+      if (window.lucide) lucide.createIcons();
+    }
+
+    // 5. QUICK PRICE EDIT
+    function openQuickPriceModal(id) {
+      const p = appProducts.find(x => x.id === id);
+      if (!p) return;
+
+      document.getElementById('edit-prod-id').value = p.id;
+      document.getElementById('edit-modal-prod-name').innerText = p.name;
+      document.getElementById('edit-modal-prod-details').innerText = `${p.brand || ''} · ${p.category}`;
+      document.getElementById('edit-prod-price-input').value = p.price;
+      document.getElementById('edit-prod-old-price-input').value = p.oldPrice || '';
+      document.getElementById('edit-prod-instock').checked = (p.inStock !== false);
+
+      const modal = document.getElementById('quick-price-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeQuickPriceModal() {
+      const modal = document.getElementById('quick-price-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function adjustQuickPrice(pct) {
+      const input = document.getElementById('edit-prod-price-input');
+      let val = parseFloat(input.value) || 0;
+      val = Math.round((val * (1 + (pct / 100))) / 100) * 100;
+      input.value = val;
+    }
+
+    async function saveQuickPrice() {
+      const id = parseInt(document.getElementById('edit-prod-id').value, 10);
+      const newPrice = parseInt(document.getElementById('edit-prod-price-input').value, 10) || 0;
+      const oldVal = document.getElementById('edit-prod-old-price-input').value.trim();
+      const newOldPrice = oldVal ? (parseInt(oldVal, 10) || null) : null;
+      const inStock = document.getElementById('edit-prod-instock').checked;
+
+      const p = appProducts.find(x => x.id === id);
+      if (p) {
+        p.price = newPrice;
+        p.oldPrice = newOldPrice;
+        p.inStock = inStock;
+        persistProducts();
+
+        // Push to Supabase if connected
+        if (supabaseClient) {
+          try {
+            await supabaseClient
+              .from('products')
+              .update({ price: newPrice, old_price: newOldPrice, in_stock: inStock })
+              .eq('id', id);
+          } catch(e) {
+            console.warn("Error updating supabase:", e);
+          }
+        }
+
+        renderProductsList();
+        closeQuickPriceModal();
+        showToast(`¡Precio de ${p.name} actualizado en la web!`);
+      }
+    }
+
+    // 6. ADD NEW PRODUCT WITH CAMERA
+    function openAddModal() {
+      document.getElementById('new-name').value = '';
+      document.getElementById('new-brand').value = '';
+      document.getElementById('new-price').value = '';
+      document.getElementById('new-old-price').value = '';
+      newPhotoBase64 = '';
+      document.getElementById('add-photo-preview-img').classList.add('hidden');
+      document.getElementById('add-photo-icon').classList.remove('hidden');
+
+      const modal = document.getElementById('add-product-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      if (window.lucide) lucide.createIcons();
+    }
+
+    function closeAddModal() {
+      const modal = document.getElementById('add-product-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function handleCameraPhoto(input) {
+      const file = input.files && input.files[0];
+      if (!file) return;
+
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        const img = new Image();
+        img.onload = function() {
+          const canvas = document.createElement('canvas');
+          let w = img.width;
+          let h = img.height;
+          const maxDim = 400;
+          if (w > h) {
+            if (w > maxDim) { h = Math.round((h * maxDim) / w); w = maxDim; }
+          } else {
+            if (h > maxDim) { w = Math.round((w * maxDim) / h); h = maxDim; }
+          }
+          canvas.width = w;
+          canvas.height = h;
+          const ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, w, h);
+          newPhotoBase64 = canvas.toDataURL('image/jpeg', 0.82);
+
+          const imgEl = document.getElementById('add-photo-preview-img');
+          imgEl.src = newPhotoBase64;
+          imgEl.classList.remove('hidden');
+          document.getElementById('add-photo-icon').classList.add('hidden');
+        };
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
+    }
+
+    async function handleSaveNewProduct(e) {
+      e.preventDefault();
+      const name = document.getElementById('new-name').value.trim();
+      const category = document.getElementById('new-category').value;
+      const brand = document.getElementById('new-brand').value.trim().toUpperCase();
+      const price = parseInt(document.getElementById('new-price').value, 10) || 0;
+      const oldVal = document.getElementById('new-old-price').value.trim();
+      const oldPrice = oldVal ? (parseInt(oldVal, 10) || null) : null;
+
+      const newId = Date.now();
+      const code = (category === 'Gorras') ? ('G-' + String(newId).slice(-4)) : ('BX-' + String(newId).slice(-4));
+
+      const newProd = {
+        id: newId,
+        code: code,
+        name: name,
+        brand: brand,
+        category: category,
+        details: `${category} · Original`,
+        price: price,
+        oldPrice: oldPrice,
+        badge: 'Nuevo',
+        image: newPhotoBase64 || '',
+        inStock: true
+      };
+
+      appProducts.unshift(newProd);
+      persistProducts();
+
+      // Push to Supabase
+      if (supabaseClient) {
+        try {
+          await supabaseClient.from('products').insert([{
+            id: newId,
+            code: code,
+            name: name,
+            brand: brand,
+            category: category,
+            details: newProd.details,
+            price: price,
+            old_price: oldPrice,
+            badge: 'Nuevo',
+            image: newPhotoBase64 || '',
+            in_stock: true
+          }]);
+        } catch(e) {
+          console.warn("Supabase insert:", e);
+        }
+      }
+
+      closeAddModal();
+      currentPage = 1;
+      renderProductsList();
+      showToast(`¡${name} publicado en la web!`);
+    }
+
+    // 7. BULK %
+    function openBulkModal() {
+      const m = document.getElementById('bulk-modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+    function closeBulkModal() {
+      const m = document.getElementById('bulk-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+    function applyBulk() {
+      const cat = document.getElementById('bulk-cat').value;
+      const pct = parseFloat(document.getElementById('bulk-pct').value);
+      if (isNaN(pct) || pct === 0) return alert("Ingresá un porcentaje válido");
+
+      let count = 0;
+      appProducts.forEach(p => {
+        if (cat === 'all' || p.category === cat) {
+          p.price = Math.round((p.price * (1 + (pct / 100))) / 100) * 100;
+          count++;
+        }
+      });
+      persistProducts();
+      closeBulkModal();
+      renderProductsList();
+      showToast(`¡Ajuste del ${pct}% aplicado a ${count} productos!`);
+    }
+
+    // 8. CLOUD CONFIG
+    function openConfigModal() {
+      document.getElementById('cfg-supabase-url').value = localStorage.getItem('boxinera_sb_url') || '';
+      document.getElementById('cfg-supabase-key').value = localStorage.getItem('boxinera_sb_key') || '';
+      const m = document.getElementById('config-modal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+    function closeConfigModal() {
+      const m = document.getElementById('config-modal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+    function saveCloudConfig() {
+      const url = document.getElementById('cfg-supabase-url').value.trim();
+      const key = document.getElementById('cfg-supabase-key').value.trim();
+      localStorage.setItem('boxinera_sb_url', url);
+      localStorage.setItem('boxinera_sb_key', key);
+      closeConfigModal();
+      initSupabase();
+      showToast("Configuración de nube guardada");
+    }
+
+    // 9. FILTERS & SEARCH
+    function filterCategory(cat) {
+      currentCategory = cat;
+      ['Todas', 'Perfumería', 'Body Splash', 'Gorras'].forEach(c => {
+        const btn = document.getElementById('chip-' + c);
+        if (btn) {
+          if (c === cat) {
+            btn.className = "px-3 py-1.5 rounded-xl font-bold bg-brand-neon text-black shrink-0 transition-all";
+          } else {
+            btn.className = "px-3 py-1.5 rounded-xl font-bold bg-[#0a180e] text-gray-300 border border-brand-900 shrink-0 transition-all";
+          }
+        }
+      });
+      currentPage = 1;
+      renderProductsList();
+    }
+
+    function handleSearch(val) {
+      searchQuery = (val || '').trim().toLowerCase();
+      const clearBtn = document.getElementById('mobile-search-clear');
+      if (clearBtn) {
+        if (searchQuery) clearBtn.classList.remove('hidden');
+        else clearBtn.classList.add('hidden');
+      }
+      currentPage = 1;
+      renderProductsList();
+    }
+
+    function clearSearch() {
+      document.getElementById('mobile-search-input').value = '';
+      searchQuery = '';
+      document.getElementById('mobile-search-clear').classList.add('hidden');
+      currentPage = 1;
+      renderProductsList();
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        renderProductsList();
+        scrollToTop();
+      }
+    }
+
+    function nextPage() {
+      currentPage++;
+      renderProductsList();
+      scrollToTop();
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('mobile-toast');
+      document.getElementById('toast-text').innerText = text;
+      toast.classList.remove('-translate-y-20', 'opacity-0');
+      toast.classList.add('translate-y-0', 'opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('translate-y-0', 'opacity-100');
+        toast.classList.add('-translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+  </script>
+</body>
+</html>
